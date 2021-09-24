@@ -45,11 +45,9 @@ export default {
   background-blend-mode: darken;
   &:hover {
     background: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
-    background-blend-mode: darken;
   }
   &:active {
     background: linear-gradient(90deg, #076432 2.61%, #013c27 112.6%);
-    background-blend-mode: darken;
   }
 }
 

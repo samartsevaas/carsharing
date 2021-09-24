@@ -1,8 +1,8 @@
 <template>
   <div class="main-sidebar">
     <div class="base-sidebar" :class="[fullClass]">
-      <burger-button @click.native="classActive"></burger-button>
-      <burger-menu v-if="this.visible" :class="[visibleBurgerMenu]">
+      <burger-button @click.native="classIsActive"></burger-button>
+      <burger-menu v-if="this.isVisible" :class="[visibleBurgerMenu]">
       </burger-menu>
       <lang-button></lang-button>
     </div>
@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import BurgerButton from "../shared/BurgerButton.vue";
-import BurgerMenu from "../shared/BurgerMenu.vue";
-import LangButton from "../shared/LangButton.vue";
+import BurgerButton from "@shared/BurgerButton.vue";
+import BurgerMenu from "@shared/BurgerMenu.vue";
+import LangButton from "@shared/LangButton.vue";
 
 export default {
   name: "BaseSidebar",
@@ -23,21 +23,20 @@ export default {
   },
   data() {
     return {
-      visible: false,
+      isVisible: false,
     };
   },
   computed: {
     fullClass() {
-      return this.visible ? "base-sidebar_visible" : " ";
+      return this.isVisible ? "base-sidebar_visible" : " ";
     },
     visibleBurgerMenu() {
-      return this.visible ? "burgerMenu__background" : " ";
+      return this.isVisible ? "burger-menu__background" : " ";
     },
   },
   methods: {
-    classActive: function () {
-      this.visible = !this.visible;
-      // document.body.style.overflow = (this.visible && 'hidden') || 'auto';
+    classIsActive() {
+      this.isVisible = !this.isVisible;
     },
   },
 };

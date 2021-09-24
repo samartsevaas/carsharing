@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import BaseButton from "../../shared/BaseButton.vue";
+import BaseButton from "@shared/BaseButton.vue";
 export default {
   components: { BaseButton },
   name: "MainPage",

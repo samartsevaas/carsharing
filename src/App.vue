@@ -1,13 +1,13 @@
 <template>
   <div id="layout">
     <div class="wrapper">
-      <div class="page-leftSide">
+      <div class="page-left-side">
         <the-header></the-header>
         <base-sidebar></base-sidebar>
         <main-page></main-page>
         <the-footer></the-footer>
       </div>
-      <div class="page-rightSide">
+      <div class="page-right-side">
         <slider> </slider>
       </div>
     </div>
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import TheFooter from "./components/modules/TheFooter.vue";
-import TheHeader from "./components/modules/TheHeader.vue";
-import MainPage from "./components/pages/index/MainPage.vue";
-import BaseSidebar from "./components/modules/Sidebar.vue";
-import Slider from "./components/shared/BaseSlider.vue";
+import TheFooter from "@modules/TheFooter.vue";
+import TheHeader from "@modules/TheHeader.vue";
+import MainPage from "@pages/index/MainPage.vue";
+import BaseSidebar from "@modules/Sidebar.vue";
+import Slider from "@shared/BaseSlider.vue";
 export default {
   name: "App",
   components: {

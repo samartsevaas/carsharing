@@ -21,6 +21,9 @@ export default {
   position: relative;
   margin-top: 35px;
   margin-left: 17px;
+  @media (max-width: 1024px) {
+    margin-top: 17px;
+  }
   @media (max-width: 430px) {
     margin-top: 15px;
     margin-left: 10px;

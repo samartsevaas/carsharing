@@ -8,9 +8,7 @@
         <the-footer></the-footer>
       </div>
       <div class="page-right-side">
-        <Slider
-        width="100vh"
-      height="100vh"
+        <Slider id="slider"
       :autoplay="false">
           <SliderItem
         v-for="(slide, index) in list"
@@ -73,6 +71,13 @@ export default {
 </script>
 ,
 <style lang="scss">
+#slider{
+  width: 100vh !important;
+  height: 100vh !important;
+  @media (max-width: 1024px) {
+   width: 100% !important;
+  }
+}
 .base-slider__info {
   position: absolute;
   height: 100%;
@@ -80,10 +85,14 @@ export default {
   display: flex;
   flex-direction: column;
   font-family: "Roboto", sans-serif;
-  top: 142px;
+  top: 30px;
   padding: 110px;
   @media (max-width: 1000px) {
     background-position-x: center;
+  }
+  @media (max-width: 1024px) {
+    top: 0px;
+  padding: 78px;
   }
   &-service{
     font-weight: 500;
@@ -95,6 +104,9 @@ export default {
     font-weight: 300;
     font-size: 24px;
     margin-top: 20px;
+    @media (max-width: 1024px) {
+      font-size: 20px;
+  }
   }
   &_button{
     margin-top: 30px;

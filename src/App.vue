@@ -1,50 +1,50 @@
 <template>
-  <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+  <div id="layout">
+    <div class="wrapper">
+      <div class="page-left-side">
+        <the-header></the-header>
+        <base-sidebar></base-sidebar>
+        <main-page></main-page>
+        <the-footer></the-footer>
       </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <router-view />
-    </v-main>
-  </v-app>
+      <div class="page-right-side">
+        <slider> </slider>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import TheFooter from "@modules/TheFooter.vue";
+import TheHeader from "@modules/TheHeader.vue";
+import MainPage from "@pages/index/MainPage.vue";
+import BaseSidebar from "@modules/Sidebar.vue";
+import Slider from "@shared/BaseSlider.vue";
 export default {
   name: "App",
-
-  data: () => ({
-    //
-  }),
+  components: {
+    BaseSidebar,
+    TheHeader,
+    MainPage,
+    TheFooter,
+    Slider,
+  },
+  data() {
+    return {
+      list: [
+        { backgroundColor: "#3f51b5", width: "100%", height: "100%" },
+        { backgroundColor: "#eee", width: "100%", height: "100%" },
+        { backgroundColor: "#f44336", width: "100%", height: "100%" },
+        { backgroundColor: "#f44458", width: "100%", height: "100%" },
+      ],
+    };
+  },
+  methods: {
+    hello($event) {
+      console.log(`hello index: ${$event}`);
+    },
+  },
 };
 </script>
+,
+<style scoped scss="lang"></style>

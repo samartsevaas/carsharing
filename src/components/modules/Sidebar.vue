@@ -53,6 +53,8 @@ export default {
   transition: background 0.3s ease, width 0.3s ease;
   display: flex;
   flex-direction: column;
+  position: absolute;
+    z-index: 100;
   @media (max-width: 430px) {
     background: transparent;
   }

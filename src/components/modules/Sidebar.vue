@@ -54,7 +54,7 @@ export default {
   display: flex;
   flex-direction: column;
   position: absolute;
-    z-index: 100;
+  z-index: 100;
   @media (max-width: 430px) {
     background: transparent;
   }

@@ -21,7 +21,7 @@ export default {
 <style scoped lang="scss">
 .main-footer {
   margin: auto 0px 0px 0px;
-    padding: 13px;
+  padding: 13px;
   @media (max-width: 430px) {
     margin: 0;
     position: absolute;

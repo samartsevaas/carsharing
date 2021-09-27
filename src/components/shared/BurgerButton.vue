@@ -7,12 +7,9 @@
   </div>
 </template>
 <script>
-
 export default {
   name: "BurgerButton",
-  components:{
-    
-  }
+  components: {},
 };
 </script>
 

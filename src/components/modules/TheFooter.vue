@@ -20,7 +20,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .main-footer {
-  margin: 250px 32px 32px;
+  margin: auto 32px 32px;
   @media (max-width: 430px) {
     margin: 0;
     position: absolute;

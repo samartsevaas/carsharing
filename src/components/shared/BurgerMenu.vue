@@ -14,13 +14,7 @@
 </template>
 
 <script>
-const MENU_ITEMS = [
-        { li: "ПАРКОВКА" },
-        { li: "СТРАХОВКА" },
-        { li: "БЕНЗИН" },
-        { li: "ОБСЛУЖИВАНИЕ" },
-      ];
-
+import {MENU_ITEMS} from "@constants/common.js"
 import SocialIcon from "./SocialIcon.vue";
 
 export default {

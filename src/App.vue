@@ -1,5 +1,5 @@
 <template>
-  <div id="layout">
+  <div class="layout">
     <div class="wrapper">
       <div class="page-left-side">
         <the-header></the-header>

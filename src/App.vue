@@ -8,23 +8,21 @@
         <the-footer></the-footer>
       </div>
       <div class="page-right-side">
-        <Slider
-        width="100vh"
-      height="100vh"
-      :autoplay="false">
-          <SliderItem
-        v-for="(slide, index) in list"
-        :key="index"
-      >
-      <div class="base-slider__info">
-      <span class="base-slider__info-service">{{ slide.service }}</span>
-      <span class="base-slider__info-slogan">{{ slide.slogan }}</span>
-      <div>
-        <base-button :theme="slide.btnColor" class="base-slider__info_button">Подробнее</base-button>
-      </div>
-    </div>
-        <img :src= "slide.src"/>
-      </SliderItem>
+        <Slider id="slider" :autoplay="false">
+          <SliderItem v-for="(slide, index) in list" :key="index">
+            <div class="base-slider__info">
+              <span class="base-slider__info-service">{{ slide.service }}</span>
+              <span class="base-slider__info-slogan">{{ slide.slogan }}</span>
+              <div>
+                <base-button
+                  :theme="slide.btnColor"
+                  class="base-slider__info_button"
+                  >Подробнее</base-button
+                >
+              </div>
+            </div>
+            <img :src="slide.src" />
+          </SliderItem>
         </Slider>
       </div>
     </div>
@@ -45,27 +43,36 @@ export default {
     TheHeader,
     MainPage,
     TheFooter,
-    BaseButton
+    BaseButton,
   },
   data() {
     return {
       list: [
-        { src: require("@/assets/slide1.png"), 
-          slogan: "Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах",
+        {
+          src: require("@/assets/slide1.png"),
+          slogan:
+            "Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах",
           service: "Парковка",
-          btnColor: "dark-green"},
-        { src: require("@/assets/slide2.png"),
+          btnColor: "dark-green",
+        },
+        {
+          src: require("@/assets/slide2.png"),
           slogan: "Полная страховка страховка автомобиля",
           service: "Страховка",
-          btnColor: "blue"},
-        { src: require("@/assets/slide3.png"),
+          btnColor: "blue",
+        },
+        {
+          src: require("@/assets/slide3.png"),
           slogan: "Полный бак на любой заправке города за наш счёт",
           service: "Бензин",
-          btnColor: "red"},
-        { src: require("@/assets/slide4.png"),
+          btnColor: "red",
+        },
+        {
+          src: require("@/assets/slide4.png"),
           slogan: "Автомобиль проходит еженедельное ТО",
           service: "Обслуживание",
-          btnColor: "violet"},
+          btnColor: "violet",
+        },
       ],
     };
   },
@@ -73,6 +80,13 @@ export default {
 </script>
 ,
 <style lang="scss">
+#slider {
+  width: 100vh !important;
+  height: 100vh !important;
+  @media (max-width: 1024px) {
+    width: 100% !important;
+  }
+}
 .base-slider__info {
   position: absolute;
   height: 100%;
@@ -80,35 +94,41 @@ export default {
   display: flex;
   flex-direction: column;
   font-family: "Roboto", sans-serif;
-  top: 142px;
+  top: 30px;
   padding: 110px;
   @media (max-width: 1000px) {
     background-position-x: center;
   }
-  &-service{
+  @media (max-width: 1024px) {
+    top: 0px;
+    padding: 78px;
+  }
+  &-service {
     font-weight: 500;
     font-size: 40px;
     color: $whiteTextColor;
   }
-  &-slogan{
+  &-slogan {
     color: $gray-light;
     font-weight: 300;
     font-size: 24px;
     margin-top: 20px;
+    @media (max-width: 1024px) {
+      font-size: 20px;
+    }
   }
-  &_button{
+  &_button {
     margin-top: 30px;
   }
 }
-.slider-btn{
+.slider-btn {
   width: 70px;
   &:hover {
     background: rgba(8, 110, 55, 0.32) !important;
-   .slider-icon {
-    border-left-color: $gray-light !important;
-    border-bottom-color: $gray-light !important;
-  }
+    .slider-icon {
+      border-left-color: $gray-light !important;
+      border-bottom-color: $gray-light !important;
+    }
   }
 }
-
 </style>

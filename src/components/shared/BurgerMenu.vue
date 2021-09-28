@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import {MENU_ITEMS} from "@constants/common.js"
+import { MENU_ITEMS } from "@constants/common.js";
 import SocialIcon from "./SocialIcon.vue";
 
 export default {

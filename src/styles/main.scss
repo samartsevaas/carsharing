@@ -34,9 +34,16 @@ a {
   @media (max-width: 430px) {
     margin-left: 0;
   }
+  @media(max-width: 768px) {
+    height: 100%;
+   }
 }
 #layout{
   width: 100%;
+  @media(max-width: 768px) {
+    height: 100%;
+   }
+
 }
 .page-left-side{
   flex: 0.5;
@@ -61,6 +68,9 @@ a {
 body{
   margin: 0;
   font-family: "Roboto", sans-serif;
+  @media (max-width: 768px) {
+   height: 100%;
+  }
 }
 
 .slider-item{
@@ -68,4 +78,9 @@ body{
     width: 100%;
     height: 100%;
   }
+}
+html{
+  @media(max-width: 768px) {
+    height: 100%;
+   }
 }

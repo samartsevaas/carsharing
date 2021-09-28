@@ -33,7 +33,6 @@ export default {
   display: flex;
   flex: 0.5;
   flex-direction: column;
-  margin-top: 120px;
 }
 .main-page__info-service,
 .main-page__info-slogan {

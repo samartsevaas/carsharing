@@ -7,7 +7,7 @@
         <span>Поминутная аренда авто твоего города</span>
       </div>
       <div>
-        <base-button :class="[main - green]">Забронировать</base-button>
+        <base-button :class="[main - green]"><router-link to="./order">Забронировать</router-link></base-button>
       </div>
     </div>
   </section>
@@ -31,7 +31,7 @@ export default {
 }
 .main-page__info {
   display: flex;
-  flex: 0.5;
+  width: 100%;
   flex-direction: column;
 }
 .main-page__info-service,

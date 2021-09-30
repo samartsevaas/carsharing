@@ -15,6 +15,7 @@ module.exports = {
         "@shared": path.resolve(__dirname, "src/components/shared"),
         "@pages": path.resolve(__dirname, "src/components/pages"),
         "@modules": path.resolve(__dirname, "src/components/modules"),
+        "@constants": path.resolve(__dirname, "src/constants"),
       },
     },
   },

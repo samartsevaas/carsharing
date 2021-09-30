@@ -22,13 +22,13 @@ export default {
 </script>
 
 <style lang="scss">
-.socialIcon{
+.socialIcon {
   padding-right: 24px;
   font-size: 25px;
 }
-.socialIcon svg{
+.socialIcon svg {
   color: $backGroundSocialIcon;
-  &:hover{
+  &:hover {
     color: $main-accent;
   }
 }

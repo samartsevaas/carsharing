@@ -1,11 +1,11 @@
 <template>
-  <nav class="burgerMenu__background-none">
-    <ul class="toggleMenu__table">
-      <li class="toggleMenu__table__item" v-for="item in items" :key="item.li">
+  <nav class="burger-menu__background-none">
+    <ul class="toggle-menu__table">
+      <li class="toggle-menu__table__item" v-for="item in items" :key="item.li">
         <a href=""> {{ item.li }} </a>
       </li>
     </ul>
-    <div class="toggleMenu__social-icon">
+    <div class="toggle-menu__social-icon">
       <social-icon icon="telegram"></social-icon>
       <social-icon icon="facebook"></social-icon>
       <social-icon icon="instagram"></social-icon>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { MENU_ITEMS } from "@constants/common.js";
 import SocialIcon from "./SocialIcon.vue";
 
 export default {
@@ -23,19 +24,14 @@ export default {
   },
   data() {
     return {
-      items: [
-        { li: "ПАРКОВКА" },
-        { li: "СТРАХОВКА" },
-        { li: "БЕНЗИН" },
-        { li: "ОБСЛУЖИВАНИЕ" },
-      ],
+      items: MENU_ITEMS,
     };
   },
 };
 </script>
 
 <style lang="scss">
-.burgerMenu__background-none {
+.burger-menu__background-none {
   position: relative;
   margin-left: 23px;
   margin-top: 150px;
@@ -48,7 +44,7 @@ export default {
     margin-top: 100px;
   }
 }
-.toggleMenu__table__item {
+.toggle-menu__table__item {
   list-style-type: none;
   background-color: transparent;
   overflow-x: hidden;
@@ -68,10 +64,10 @@ export default {
     font-size: 22px;
   }
 }
-.burgerMenu__background {
+.burger-menu__background {
   display: block;
 }
-.toggleMenu__social-icon {
+.toggle-menu__social-icon {
   display: flex;
   justify-content: flex-start;
   margin-left: 54px;

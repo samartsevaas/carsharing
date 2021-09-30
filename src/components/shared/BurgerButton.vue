@@ -1,5 +1,5 @@
 <template>
-  <div class="toggleMenu">
+  <div class="toggle-menu">
     <input type="checkbox" />
     <span></span>
     <span></span>
@@ -7,26 +7,26 @@
   </div>
 </template>
 <script>
-
 export default {
   name: "BurgerButton",
-  components:{
-    
-  }
+  components: {},
 };
 </script>
 
 <style lang="scss">
-.toggleMenu {
+.toggle-menu {
   position: relative;
   margin-top: 35px;
   margin-left: 17px;
+  @media (max-width: 1024px) {
+    margin-top: 17px;
+  }
   @media (max-width: 430px) {
     margin-top: 15px;
     margin-left: 10px;
   }
 }
-.toggleMenu input {
+.toggle-menu input {
   display: block;
   width: 30px;
   height: 32px;
@@ -34,7 +34,7 @@ export default {
   opacity: 0;
   z-index: 2;
 }
-.toggleMenu span {
+.toggle-menu span {
   display: block;
   width: 24px;
   height: 4px;
@@ -50,22 +50,22 @@ export default {
     background-color: $main-black;
   }
 }
-.toggleMenu span:first-child {
+.toggle-menu span:first-child {
   transform-origin: 0% 0%;
 }
-.toggleMenu span:nth-last-child(2) {
+.toggle-menu span:nth-last-child(2) {
   transform-origin: 0% 100%;
 }
-.toggleMenu input:checked ~ span {
+.toggle-menu input:checked ~ span {
   opacity: 1;
   transform: rotate(-45deg) translate(-5px, 4px);
   background: #ffffff;
 }
-.toggleMenu input:checked ~ span:nth-last-child(3) {
+.toggle-menu input:checked ~ span:nth-last-child(3) {
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2);
 }
-.toggleMenu input:checked ~ span:nth-last-child(2) {
+.toggle-menu input:checked ~ span:nth-last-child(2) {
   transform: rotate(45deg) translate(0, -1px);
 }
 </style>

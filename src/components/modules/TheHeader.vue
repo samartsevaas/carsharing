@@ -18,6 +18,9 @@ export default {};
 <style scoped lang="scss">
 .main-header {
   margin: 32px;
+  @media (max-width: 1024px) {
+    margin: 9px 0 0 0;
+  }
   @media (max-width: 430px) {
     margin: 0;
   }
@@ -58,6 +61,9 @@ export default {};
   & a {
     color: $gray-light;
     padding-left: 5px;
+  }
+  @media (max-width: 1024px) {
+    margin-right: 4px;
   }
   @media (max-width: 430px) {
     display: flex;

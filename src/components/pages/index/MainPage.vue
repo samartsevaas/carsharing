@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import BaseButton from "../../shared/BaseButton.vue";
+import BaseButton from "@shared/BaseButton.vue";
 export default {
   components: { BaseButton },
   name: "MainPage",
@@ -24,7 +24,7 @@ export default {
 <style scoped lang="scss">
 .main-page {
   margin: 32px;
-  @media (max-width: 430px) {
+  @media (max-width: 768px) {
     width: 100%;
     margin: 0;
   }
@@ -33,13 +33,15 @@ export default {
   display: flex;
   flex: 0.5;
   flex-direction: column;
-  margin-top: 120px;
 }
 .main-page__info-service,
 .main-page__info-slogan {
   font-family: "Roboto", sans-serif;
   font-size: 70px;
   font-weight: 700;
+  @media (max-width: 1024px) {
+    font-size: 45px;
+  }
   @media (max-width: 430px) {
     font-size: 32px;
     margin: 0px 10px 0px 10px;

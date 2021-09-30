@@ -15,15 +15,14 @@ import {
   faFacebook,
 } from "@fortawesome/free-brands-svg-icons";
 
-
 library.add(faUserSecret);
 library.add(faTelegram);
 library.add(faFacebook);
 library.add(faInstagram);
 library.add(faMapMarkerAlt);
-import EasySlider from 'vue-easy-slider'
- 
-Vue.use(EasySlider)
+import EasySlider from "vue-easy-slider";
+
+Vue.use(EasySlider);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

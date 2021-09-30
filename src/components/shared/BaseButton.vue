@@ -19,6 +19,9 @@ export default {
     getTheme() {
       return `base-button_${this.theme}`;
     },
+    isDisabled() {
+      return !this.term;
+    },
   },
 };
 </script>
@@ -89,5 +92,8 @@ export default {
   &:active {
     background: linear-gradient(90deg, #3d1c72 0%, #a215af 100%);
   }
+}
+.base-button_not-active {
+  background: linear-gradient(90deg, #281349 0%, #720c7b 100%);
 }
 </style>

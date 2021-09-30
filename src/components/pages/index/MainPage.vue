@@ -7,7 +7,11 @@
         <span>Поминутная аренда авто твоего города</span>
       </div>
       <div>
-        <base-button :class="[main - green]">Забронировать</base-button>
+        <base-button theme="main-green"
+          ><router-link to="/order/location"
+            >Забронировать</router-link
+          ></base-button
+        >
       </div>
     </div>
   </section>
@@ -23,7 +27,6 @@ export default {
 
 <style scoped lang="scss">
 .main-page {
-  margin: 32px;
   @media (max-width: 768px) {
     width: 100%;
     margin: 0;
@@ -31,8 +34,9 @@ export default {
 }
 .main-page__info {
   display: flex;
-  flex: 0.5;
+  width: 100%;
   flex-direction: column;
+  margin-top: 100px;
 }
 .main-page__info-service,
 .main-page__info-slogan {

@@ -17,7 +17,6 @@ export default {};
 
 <style scoped lang="scss">
 .main-header {
-  margin: 32px;
   @media (max-width: 1024px) {
     margin: 9px 0 0 0;
   }
@@ -40,10 +39,10 @@ export default {};
   font-weight: 700;
   font-size: 30px;
   color: $main-accent;
-  align-self: end;
+  align-self: flex-end;
   @media (max-width: 430px) {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
 }
 .main-header__info-city {
@@ -51,7 +50,7 @@ export default {};
   font-size: 14px;
   font-weight: 500;
   color: $gray-light;
-  align-self: end;
+  align-self: flex-end;
   & a:hover {
     color: $main-accent;
   }
@@ -67,7 +66,7 @@ export default {};
   }
   @media (max-width: 430px) {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
 }
 </style>

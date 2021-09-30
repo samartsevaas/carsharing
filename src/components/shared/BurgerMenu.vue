@@ -1,8 +1,12 @@
 <template>
   <nav class="burger-menu__background-none">
     <ul class="toggle-menu__table">
-      <li class="toggle-menu__table__item" v-for="item in items" :key="item.li">
-        <a href=""> {{ item.li }} </a>
+      <li
+        class="toggle-menu__table__item"
+        v-for="item in items"
+        :key="item.service"
+      >
+        <a href=""> {{ item.service }} </a>
       </li>
     </ul>
     <div class="toggle-menu__social-icon">

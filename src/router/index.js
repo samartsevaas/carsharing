@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import MainViews from '../views/Main/index.vue';
-import OrderViews from '../views/Orders/Settings/index.vue';
-import OrderLocationViews from '../views/Orders/Location/index.vue';
+import MainViews from "../views/Main/index.vue";
+import OrderViews from "../views/Orders/Settings/index.vue";
+import OrderLocationViews from "../views/Orders/Location/index.vue";
 
 Vue.use(VueRouter);
 
@@ -10,17 +10,13 @@ const routes = [
   {
     path: "/",
     name: "Main",
-    component: MainViews
+    component: MainViews,
   },
   {
     path: "/order",
     name: "Order",
     component: OrderViews,
-    children: [
-      // при совпадении пути с шаблоном /user/:id
-      // в <router-view> компонента User будет показан UserHome
-      { path: 'location', component: OrderLocationViews }
-    ]
+    children: [{ path: "location", component: OrderLocationViews }],
   },
 ];
 

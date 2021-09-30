@@ -12,15 +12,14 @@ export default {
 .lang-button {
   height: 48px;
   width: 48px;
-  left: 401px;
-  top: 244px;
   border-radius: 50%;
   border: none;
   background-color: transparent;
   color: $main-accent;
-  font-family: "Roboto", sans-serif;
   font-weight: 700;
   margin-top: auto;
+  margin-left: 4px;
+
   &:hover {
     border: 1px solid $gray-light;
     color: $gray-light;

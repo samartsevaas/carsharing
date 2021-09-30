@@ -1,6 +1,7 @@
 const path = require("path");
+const isDev = process.env.NODE_ENV == 'development';
 module.exports = {
-  publicPath: "/carsharing/",
+  publicPath: isDev ? '/' : "/carsharing/",
   css: {
     loaderOptions: {
       scss: {
@@ -9,6 +10,14 @@ module.exports = {
     },
   },
   configureWebpack: {
+    module: {
+        rules: [
+          {
+            test: /\.avif$/,
+            use: 'file-loader'
+          }
+        ]
+    },
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "src"),

@@ -2,15 +2,17 @@
   <div class="layout">
     <div class="wrapper">
       <div class="page-left-side">
-        <the-header></the-header>
         <base-sidebar></base-sidebar>
-        <main-page></main-page>
-        <the-footer></the-footer>
+        <div class="main-content main-content__wrapper">
+          <the-header></the-header>
+          <main-page></main-page>
+          <the-footer></the-footer>
+        </div>
       </div>
       <div class="page-right-side">
         <Slider id="slider" :autoplay="false">
           <SliderItem v-for="(slide, index) in list" :key="index">
-            <div class="base-slider__info">
+            <div class="base-slider__info main-content__wrapper">
               <span class="base-slider__info-service">{{ slide.service }}</span>
               <span class="base-slider__info-slogan">{{ slide.slogan }}</span>
               <div>
@@ -21,7 +23,10 @@
                 >
               </div>
             </div>
-            <img :src="slide.src" />
+            <picture class="slider-img">
+              <source :srcset="slide.srcAvif" type="image/avif" />
+              <img :src="slide.src" />
+            </picture>
           </SliderItem>
         </Slider>
       </div>
@@ -35,6 +40,7 @@ import TheHeader from "@modules/TheHeader.vue";
 import MainPage from "@pages/index/MainPage.vue";
 import BaseSidebar from "@modules/Sidebar.vue";
 import BaseButton from "@shared/BaseButton.vue";
+import { MENU_ITEMS } from "@/constants/common.js";
 
 export default {
   name: "MainHead",
@@ -47,33 +53,7 @@ export default {
   },
   data() {
     return {
-      list: [
-        {
-          src: require("@/assets/slide1.png"),
-          slogan:
-            "Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах",
-          service: "Парковка",
-          btnColor: "dark-green",
-        },
-        {
-          src: require("@/assets/slide2.png"),
-          slogan: "Полная страховка страховка автомобиля",
-          service: "Страховка",
-          btnColor: "blue",
-        },
-        {
-          src: require("@/assets/slide3.png"),
-          slogan: "Полный бак на любой заправке города за наш счёт",
-          service: "Бензин",
-          btnColor: "red",
-        },
-        {
-          src: require("@/assets/slide4.png"),
-          slogan: "Автомобиль проходит еженедельное ТО",
-          service: "Обслуживание",
-          btnColor: "violet",
-        },
-      ],
+      list: MENU_ITEMS,
     };
   },
 };
@@ -93,9 +73,7 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
-  font-family: "Roboto", sans-serif;
-  top: 30px;
-  padding: 110px;
+  margin-top: 137px;
   @media (max-width: 1000px) {
     background-position-x: center;
   }
@@ -131,5 +109,13 @@ export default {
     }
   }
 }
+.slider-img {
+  height: 100%;
+}
+.slider-indicator-icon {
+  background-color: $gray-light !important;
+}
+.slider-indicator-active {
+  background-color: $main-accent !important;
+}
 </style>
-

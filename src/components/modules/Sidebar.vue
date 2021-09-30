@@ -1,11 +1,8 @@
 <template>
-  <div class="main-sidebar">
-    <div class="base-sidebar" :class="[fullClass]">
-      <burger-button @click.native="classIsActive"></burger-button>
-      <burger-menu v-if="this.isVisible" :class="[visibleBurgerMenu]">
-      </burger-menu>
-      <lang-button></lang-button>
-    </div>
+  <div class="base-sidebar" :class="[fullClass]">
+    <burger-button @click.native="classIsActive"></burger-button>
+    <burger-menu v-if="isVisible" :class="[visibleBurgerMenu]"> </burger-menu>
+    <lang-button></lang-button>
   </div>
 </template>
 
@@ -46,17 +43,15 @@ export default {
   background: $sideBarBg;
   height: 100%;
   width: 64px;
-  position: fixed;
   top: 0;
   left: 0;
   overflow-x: hidden;
   transition: background 0.3s ease, width 0.3s ease;
   display: flex;
   flex-direction: column;
-  position: absolute;
   z-index: 100;
-  @media (max-width: 430px) {
-    background: transparent;
+  @media (max-width: 600px) {
+    display: none;
   }
 }
 .base-sidebar_visible {
@@ -66,6 +61,7 @@ export default {
     rgba(17, 21, 24, 1) 49%,
     rgba(21, 27, 31, 0.8) 100%
   );
+  position: absolute;
   @media (max-width: 768px) {
     background: $black;
   }

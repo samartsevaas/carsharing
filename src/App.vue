@@ -1,17 +1,11 @@
 <template>
-<div><router-view></router-view></div>
+  <router-view></router-view>
 </template>
 
 <script>
-export default{
+export default {
   name: "App",
-  created() {
-    console.log(this.$route)
-    console.log(this.$router)
-  }
-}
+};
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

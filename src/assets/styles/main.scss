@@ -1,0 +1,130 @@
+@font-face {
+  font-family: 'Roboto';
+  src: local('RobotoThin'), url('~@/assets/fonts/Roboto-Thin.woff2') format('woff2');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('RobotoLight'), url('~@/assets/fonts/Roboto-Light.woff2') format('woff2');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: local('RobotoRegular'), url('~@/assets/fonts/Roboto-Regular.woff2') format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: local('RobotoMedium'), url('~@/assets/fonts/Roboto-Medium.woff2') format('woff2');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: local('RobotoBold'), url('~@/assets/fonts/Roboto-Bold.woff2') format('woff2');
+  font-weight: 700;
+}
+a, button, input {
+  cursor: pointer;
+}
+input:focus{
+  outline: none !important;
+}
+a {
+   text-decoration: none;
+   &:visited{
+     color: $gray-light;
+   }
+}
+
+*{
+  box-sizing: border-box;
+}
+.wrapper {
+  margin: 0 auto;
+  display: flex;
+  height: 100%;
+  @media (max-width: 430px) {
+    margin-left: 0;
+  }
+}
+.main-content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 375px) {
+    width: auto;
+  }
+}
+.layout{
+  width: 100%;
+  height: 100%;
+  @media(max-width: 768px) {
+    height: 100%;
+   }
+
+}
+.main-content__wrapper{
+  padding: 32px 377px;
+  width: 100%;
+  @media(max-width: 1900px) {
+    padding: 32px 64px;
+   }
+  @media(max-width: 430px) {
+    padding: 0;
+   }
+}
+.main-content__wrapper_nonPaddingBot{
+  padding: 0px 64px;
+  padding: 0px 290px;
+  height: 100%;
+  @media(max-width: 1900px) {
+    padding: 0px 64px;
+   }
+   @media(max-width: 425px) {
+    padding: 0px;
+   }
+}
+.fullWidth{
+  width: 100%;
+}
+.page-left-side{
+  flex: 0.5;
+  display: flex;
+  @media(max-width: 768px) {
+    width: 100%;
+    flex: 1;
+   }
+   @media(max-width: 430px) {
+    display: flex;
+    flex-direction: column;
+   }
+}
+.page-full{
+  display: flex;
+  width: 100%;
+}
+.page-right-side{
+ flex: 0.5;
+ @media(max-width: 768px) {
+  display: none;
+ }
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  margin: 0;
+  height: 100%;
+}
+
+.slider-item{
+  & img {
+    width: 100%;
+    height: 100%;
+  }
+}
+html{
+  height: 100%;
+}

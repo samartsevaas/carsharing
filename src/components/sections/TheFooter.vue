@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import BaseLink from "@shared/BaseLink.vue";
+import BaseLink from "@elements/BaseLink.vue";
 export default {
   name: "MainFooter",
   components: {

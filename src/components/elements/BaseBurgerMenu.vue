@@ -19,7 +19,7 @@
 
 <script>
 import { MENU_ITEMS } from "@constants/common.js";
-import SocialIcon from "./SocialIcon.vue";
+import SocialIcon from "@elements/BaseSocialIcon.vue";
 
 export default {
   name: "BurgerMenu",

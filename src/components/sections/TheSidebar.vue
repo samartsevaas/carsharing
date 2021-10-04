@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import BurgerButton from "@shared/BurgerButton.vue";
-import BurgerMenu from "@shared/BurgerMenu.vue";
-import LangButton from "@shared/LangButton.vue";
+import BurgerButton from "@elements/BaseBurgerButton.vue";
+import BurgerMenu from "@elements/BaseBurgerMenu.vue";
+import LangButton from "@elements/BaseLangButton.vue";
 
 export default {
   name: "BaseSidebar",

@@ -5,7 +5,7 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
-        additionalData: `@import "~@/styles/abstracts/index.scss";`,
+        additionalData: `@import "~@/assets/styles/abstracts/index.scss";`,
       },
     },
   },
@@ -21,9 +21,9 @@ module.exports = {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "src"),
-        "@shared": path.resolve(__dirname, "src/components/shared"),
+        "@elements": path.resolve(__dirname, "src/components/elements"),
         "@pages": path.resolve(__dirname, "src/components/pages"),
-        "@modules": path.resolve(__dirname, "src/components/modules"),
+        "@sections": path.resolve(__dirname, "src/components/sections"),
         "@constants": path.resolve(__dirname, "src/constants"),
       },
     },

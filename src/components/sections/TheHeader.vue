@@ -46,9 +46,8 @@ export default {};
   }
 }
 .main-header__info-city {
-  font-family: "Roboto", sans-serif;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   color: $gray-light;
   align-self: flex-end;
   & a:hover {
@@ -60,6 +59,9 @@ export default {};
   & a {
     color: $gray-light;
     padding-left: 5px;
+  }
+  & svg{
+    font-size: 16px;
   }
   @media (max-width: 1024px) {
     margin-right: 4px;

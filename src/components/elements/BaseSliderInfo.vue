@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import BaseButton from "@shared/BaseButton.vue";
+import BaseButton from "@elements/BaseButton.vue";
 import { MENU_ITEMS } from "@constants/common.js";
 
 export default {

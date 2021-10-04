@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import BaseButton from "@shared/BaseButton.vue";
+import BaseButton from "@elements/BaseButton.vue";
 export default {
   components: { BaseButton },
-  name: "MainPage",
+  name: "MainContent",
 };
 </script>
 
@@ -30,13 +30,16 @@ export default {
   @media (max-width: 768px) {
     width: 100%;
     margin: 0;
+    display: flex;
+height: 100%;
+justify-content: center;
+align-items: center;
   }
 }
 .main-page__info {
   display: flex;
   width: 100%;
   flex-direction: column;
-  margin-top: 100px;
 }
 .main-page__info-service,
 .main-page__info-slogan {

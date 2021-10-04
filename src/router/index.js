@@ -1,19 +1,22 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import MainViews from "../views/Main/index.vue";
+import OrderViews from "../views/Orders/Settings/index.vue";
+import OrderLocationViews from "../views/Orders/Location/index.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "Main",
+    component: MainViews,
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: "/order",
+    name: "Order",
+    component: OrderViews,
+    children: [{ path: "location", component: OrderLocationViews }],
   },
 ];
 

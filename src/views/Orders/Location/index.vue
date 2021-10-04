@@ -29,11 +29,9 @@
 </template>
 
 <script>
-
 export default {
   name: "OrderLocationViews",
-  components: {
-  },
+  components: {},
   computed: {
     link() {
       return "location";
@@ -43,8 +41,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.order-check-city-handler-pick::placeholder, .order-check-city-handler::placeholder{
-  font-family: 'Roboto', sans-serif;
+.order-check-city-handler-pick::placeholder,
+.order-check-city-handler::placeholder {
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
   font-weight: 300;
 }
@@ -63,10 +62,10 @@ export default {
     text-overflow: ellipsis;
   }
 }
-.order-check-city-handler{
+.order-check-city-handler {
   padding: 31px 0px 2px 0px;
 }
-.order-check-city-handler-pick{
+.order-check-city-handler-pick {
   padding: 15px 0px 2px 0px;
 }
 .order-check-title {
@@ -75,14 +74,14 @@ export default {
   font-weight: 300;
   width: 100%;
   margin-top: 16px;
-    max-width: 99px;
+  max-width: 99px;
   @media (max-width: 730px) {
     display: block;
   }
   &-city,
   &-pick-point {
     padding: 16px 8px 0px 0px;
-    
+
     align-self: flex-end;
 
     @media (max-width: 730px) {

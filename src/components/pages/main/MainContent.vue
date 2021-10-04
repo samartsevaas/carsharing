@@ -31,9 +31,9 @@ export default {
     width: 100%;
     margin: 0;
     display: flex;
-height: 100%;
-justify-content: center;
-align-items: center;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
   }
 }
 .main-page__info {

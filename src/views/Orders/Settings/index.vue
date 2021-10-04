@@ -136,7 +136,7 @@ export default {
     margin: 20px 0px;
     font-weight: 500;
     font-size: 18px;
-    line-height:21.09px;
+    line-height: 21.09px;
     @media (max-width: 425px) {
       font-size: 14px;
       & button {
@@ -189,8 +189,8 @@ export default {
 .temporaryVisual {
   background: $gray-light !important;
 }
-.exact-active-class, .router-link-exact-active{
+.exact-active-class,
+.router-link-exact-active {
   color: $main-accent !important;
 }
-
 </style>

@@ -48,7 +48,7 @@ export default {
     TheHeader,
     MainContent,
     TheFooter,
-    BaseButton
+    BaseButton,
   },
   data() {
     return {

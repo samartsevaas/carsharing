@@ -96,5 +96,4 @@ export default {
 .base-button_not-active {
   background: linear-gradient(90deg, #281349 0%, #720c7b 100%);
 }
-
 </style>

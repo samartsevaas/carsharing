@@ -60,7 +60,7 @@ export default {};
     color: $gray-light;
     padding-left: 5px;
   }
-  & svg{
+  & svg {
     font-size: 16px;
   }
   @media (max-width: 1024px) {

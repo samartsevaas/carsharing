@@ -15,7 +15,9 @@
               <div class="order-panel__content-item">
                 <router-link to="/order/location">Местоположение</router-link>
               </div>
-              <div class="order-panel__content-item"><a href="">Модель</a></div>
+              <div class="order-panel__content-item">
+                <router-link to="/order/models">Модель</router-link>
+              </div>
               <div class="order-panel__content-item">
                 <a href="">Дополнительно</a>
               </div>
@@ -43,9 +45,12 @@
                   <span>Цена:</span> от 8 000 до 12 000 ₽
                 </div>
                 <div class="order-info__results-final-offer">
-                  <base-button class="temporaryVisual fullWidth"
-                    >Выбрать модель</base-button
+                  <base-button
+                    class="temporaryVisual fullWidth"
+                    href="/order/models"
                   >
+                    Выбрать модель
+                  </base-button>
                 </div>
               </div>
             </div>
@@ -74,13 +79,17 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .order-info__results__wrapper {
   border-left: 1px solid $gray-light;
 }
 .order-panel {
   border-top: 1px solid $gray-light;
   border-bottom: 1px solid $gray-light;
+  @media (max-width: 425px) {
+    padding: 0px 10px;
+    border: none;
+  }
   &__content {
     display: flex;
     &-item {
@@ -118,6 +127,9 @@ export default {
 }
 .order-info__option {
   flex: 0.7;
+  @media (max-width: 425px) {
+    margin-left: 64px;
+  }
 }
 
 .order-info__results {
@@ -186,11 +198,8 @@ export default {
   display: flex;
   justify-content: center;
 }
-.temporaryVisual {
-  background: $gray-light !important;
-}
-.exact-active-class,
-.router-link-exact-active {
+
+.order-panel__content-item .router-link-exact-active {
   color: $main-accent !important;
 }
 </style>

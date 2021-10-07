@@ -49,6 +49,9 @@ export default {
 }
 .order-check {
   display: flex;
+  @media (max-width: 768px) {
+    margin-right: 64px;
+  }
   @media (max-width: 700px) {
     display: block;
     margin-top: 20px;

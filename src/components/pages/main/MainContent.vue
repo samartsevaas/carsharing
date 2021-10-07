@@ -6,13 +6,10 @@
       <div class="main-page__info-slogan_long">
         <span>Поминутная аренда авто твоего города</span>
       </div>
-      <div>
-        <base-button theme="main-green"
-          ><router-link to="/order/location"
-            >Забронировать</router-link
-          ></base-button
-        >
-      </div>
+
+      <base-button theme="main-green" href="/order/location"
+        >Забронировать</base-button
+      >
     </div>
   </section>
 </template>

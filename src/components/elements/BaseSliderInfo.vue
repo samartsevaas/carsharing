@@ -1,7 +1,5 @@
 <template>
   <div class="base-slider-info">
-    <span class="base-slider-info-service">123</span>
-    <span class="base-slider-info-slogan">345</span>
     <div class="base-slider-info-slogan_long">
       <span>Поминутная аренда авто твоего города</span>
     </div>

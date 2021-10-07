@@ -1,18 +1,28 @@
 <template>
-  <button type="button" class="base-button" :class="[getTheme]">
+  <component
+    :is="definedTag.tag"
+    class="base-button"
+    :class="[getTheme]"
+    v-bind="definedTag.atributes"
+  >
     <slot></slot>
-  </button>
+  </component>
 </template>
 
 <script>
 export default {
   name: "BaseButton",
+
   props: {
     theme: {
       type: String,
       validator: (theme) =>
         ["red", "blue", "dark-green", "violet", "main-green"].includes(theme),
       default: "main-green",
+    },
+    href: {
+      type: String,
+      default: "",
     },
   },
   computed: {
@@ -21,6 +31,22 @@ export default {
     },
     isDisabled() {
       return !this.term;
+    },
+    definedTag() {
+      if (this.href) {
+        return {
+          tag: "router-link",
+          atributes: {
+            to: this.href,
+          },
+        };
+      }
+      return {
+        tag: "button",
+        atributes: {
+          type: "button",
+        },
+      };
     },
   },
 };
@@ -37,6 +63,10 @@ export default {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 21.09px;
   @media (max-width: 425px) {
     width: 100%;
     border-radius: 0;

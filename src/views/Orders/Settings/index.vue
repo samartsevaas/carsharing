@@ -19,7 +19,9 @@
                 <router-link to="/order/models">Модель</router-link>
               </div>
               <div class="order-panel__content-item">
-                <a href="">Дополнительно</a>
+                <router-link to="/order/additionally"
+                  >Дополнительно</router-link
+                >
               </div>
               <div class="order-panel__content-item"><a href="">Итого</a></div>
             </div>

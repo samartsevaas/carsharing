@@ -3,7 +3,6 @@
     <div class="wrapper">
       <div class="page-full">
         <base-sidebar></base-sidebar>
-
         <div class="main-content">
           <div class="main-content__wrapper">
             <the-header></the-header>
@@ -23,7 +22,11 @@
                   >Дополнительно</router-link
                 >
               </div>
-              <div class="order-panel__content-item"><a href="">Итого</a></div>
+              <div class="order-panel__content-item">
+                <router-link to="/order/result"
+                  >Итого</router-link
+                >
+                </div>
             </div>
           </nav>
           <div class="main-content__wrapper_nonPaddingBot">
@@ -129,6 +132,7 @@ export default {
 }
 .order-info__option {
   flex: 0.7;
+  margin-top: 32px;
   @media (max-width: 425px) {
     margin-left: 64px;
   }

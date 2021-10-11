@@ -4,7 +4,7 @@ import MainViews from "../views/Main/index.vue";
 import OrderViews from "../views/Orders/Settings/index.vue";
 import OrderLocationViews from "../views/Orders/Location/index.vue";
 import OrderModelsViews from "../views/Orders/Models/index.vue";
-
+import OrderAdditionallyViews from "../views/Orders/Additionally/index.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -20,6 +20,7 @@ const routes = [
     children: [
       { path: "location", component: OrderLocationViews },
       { path: "models", component: OrderModelsViews },
+      { path: "additionally", component: OrderAdditionallyViews },
     ],
   },
 ];

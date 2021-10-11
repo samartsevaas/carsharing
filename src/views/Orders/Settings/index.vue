@@ -7,7 +7,12 @@
           <div class="main-content__wrapper">
             <the-header></the-header>
           </div>
-          <base-navigation></base-navigation>
+          <base-navigation v-if="this.$route.name !== 'confirmed'"></base-navigation>
+          <div v-else>
+            <div>Заказ номер RU58491823</div>
+            <div></div>
+          </div>
+      
           <div class="main-content__wrapper_nonPaddingBot">
             <div class="order-info">
               <div class="order-info__option">
@@ -16,7 +21,7 @@
               <the-order-sidebar></the-order-sidebar>
             </div>
           </div>
-        </div>
+        </div> 
       </div>
     </div>
   </div>
@@ -27,6 +32,7 @@ import TheHeader from "@sections/TheHeader.vue";
 import BaseSidebar from "@sections/TheSidebar.vue";
 import BaseNavigation from "@elements/BaseNavigation.vue";
 import TheOrderSidebar from '@sections/TheOrderSidebar.vue';
+
 
 export default {
   name: "OrderViews",

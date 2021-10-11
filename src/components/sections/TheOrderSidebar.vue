@@ -17,7 +17,7 @@
                 <div class="order-info__results-final-offer">
                   <base-button
                     class="temporaryVisual fullWidth"
-                    href="/order/models"
+                    href=""
                   >
                     Выбрать модель
                   </base-button>

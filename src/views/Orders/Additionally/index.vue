@@ -9,7 +9,9 @@
       </div>
     </div>
     <div class="order-additionally__section">
-      <div class="order-additionally__section-title">Датa аренды</div>
+      <div class="order-additionally__section-title_margin-top">
+        Датa аренды
+      </div>
       <div class="order-additionally__section-search">
         <div class="order-additionally__section-text">
           <div class="order-additionally__section-date_from">C</div>
@@ -26,7 +28,7 @@
       </div>
     </div>
     <div class="order-additionally__section">
-      <div class="order-additionally__section-title">Тариф</div>
+      <div class="order-additionally__section-title_margin-top">Тариф</div>
       <div
         class="
           order-additionally__section-radio
@@ -38,7 +40,7 @@
       </div>
     </div>
     <div class="order-additionally__section">
-      <div class="order-additionally__section-title">Доп услуги</div>
+      <div class="order-additionally__section-title_margin-top">Доп услуги</div>
       <div class="order-additionally__section-check">
         <base-check-button>Полный бак, 500р</base-check-button>
         <base-check-button>Детское кресло, 200р</base-check-button>
@@ -74,9 +76,11 @@ export default {
   }
 }
 .order-additionally__section-title {
-  margin: 32px 0px 16px 0px;
+  margin-bottom: 16px;
 }
-
+.order-additionally__section-title_margin-top {
+  margin: 32px 0px 8px 0px;
+}
 .order-additionally__section-radio {
   display: flex;
 }
@@ -97,11 +101,11 @@ export default {
 .order-additionally__section-date_from {
   display: flex;
   justify-content: end;
-  margin-top: 13px;
+  margin-top: 8px;
 }
 .order-additionally__section-date_to {
   display: flex;
-  margin-top: 13px;
+  margin-top: 8px;
 }
 .order-additionally__section-input {
   width: 100%;

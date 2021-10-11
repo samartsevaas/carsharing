@@ -6,7 +6,7 @@
         <div class="order-location-pick">Пункт Выдачи</div>
       </div>
       <div class="order-location__input">
-        <base-search-input placeholder="Ввеедите город"></base-search-input>
+        <base-search-input placeholder="Введите город"></base-search-input>
         <base-search-input
           placeholder="Введите пункт выдачи"
         ></base-search-input>

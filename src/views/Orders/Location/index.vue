@@ -1,23 +1,16 @@
 <template>
-  <div>
-    <div :link="link" class="order-check">
-      <div class="order-check-title">
-        <div class="order-check-title-city">Город</div>
-        <div class="order-check-title-pick-point">Пункт выдачи</div>
+  <div :link="link" class="order-location">
+    <div class="order-location__search">
+      <div class="order-location-text">
+        <div class="order-location-city">Город</div>
+        <div class="order-location-pick">Пункт Выдачи</div>
       </div>
-      <div class="order-check-city">
-        <input
-          class="order-check-city-handler"
-          type="search"
-          placeholder="Начните вводить город выдачи"
-        />
-        <input
-          class="order-check-city-handler-pick"
-          type="search"
-          placeholder="Начните вводить адрес пункта выдачи"
-        />
+      <div class="order-location__input">
+        <base-search-input placeholder="Ввеедите город"></base-search-input>
+        <base-search-input
+          placeholder="Введите пункт выдачи"
+        ></base-search-input>
       </div>
-      <div class="order-check_right"></div>
     </div>
     <div class="order-info__option-map">
       <div class="order-info__option-map-choose">Выбрать на карте:</div>
@@ -29,9 +22,10 @@
 </template>
 
 <script>
+import BaseSearchInput from "@elements/BaseSearchInput.vue";
 export default {
   name: "OrderLocationViews",
-  components: {},
+  components: { BaseSearchInput },
   computed: {
     link() {
       return "location";
@@ -41,71 +35,42 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.order-check-city-handler-pick::placeholder,
-.order-check-city-handler::placeholder {
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-}
-.order-check {
-  display: flex;
-  @media (max-width: 768px) {
-    margin-right: 64px;
-  }
-  @media (max-width: 700px) {
-    display: block;
-    margin-top: 20px;
-  }
-  & input {
-    display: flex;
-    width: 100%;
-    max-width: 224px;
-    border: none;
-    border-bottom: 1px solid grey;
-    text-overflow: ellipsis;
-  }
-}
-.order-check-city-handler {
-  padding: 31px 0px 2px 0px;
-}
-.order-check-city-handler-pick {
-  padding: 15px 0px 2px 0px;
-}
-.order-check-title {
+.order-location {
   display: flex;
   flex-direction: column;
-  font-weight: 300;
-  width: 100%;
-  margin-top: 16px;
-  max-width: 99px;
-  @media (max-width: 730px) {
-    display: block;
-  }
-  &-city,
-  &-pick-point {
-    padding: 16px 8px 0px 0px;
-
-    align-self: flex-end;
-
-    @media (max-width: 730px) {
-      margin-top: 3px;
-    }
-  }
-  @media (max-width: 700px) {
-    display: none;
-  }
 }
-.order-check-city {
-  width: 100%;
-  @media (max-width: 730px) {
-    display: block;
-  }
-  @media (max-width: 700px) {
-    flex-direction: unset;
-  }
-}
-.order-check_left {
+.order-location__search {
+  max-width: 40%;
   display: flex;
+  margin-top: 32px;
+  @media (max-width: 1024px) {
+    max-width: 60%;
+  }
+  @media (max-width: 768px) {
+    max-width: 88%;
+  }
+}
+.order-location-text {
+  display: flex;
+  flex-direction: column;
+  margin-right: 8px;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+}
+.order-location-city {
+  display: flex;
+  justify-content: end;
+  margin-top: 13px;
+  flex: 1;
+}
+.order-location-pick {
+  display: flex;
+  margin-top: 13px;
+  flex: 1;
+}
+.order-location__input {
+  flex: 1;
 }
 .order-info__option-map {
   &-choose {

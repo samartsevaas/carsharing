@@ -48,5 +48,6 @@ export default {
 }
 .radio-styled {
   display: block;
+  margin-bottom: 8px;
 }
 </style>

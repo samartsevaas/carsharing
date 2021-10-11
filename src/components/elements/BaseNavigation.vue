@@ -27,6 +27,22 @@ export default {
 </script>
 
 <style lang="scss">
+.order-panel {
+  border-top: 1px solid $gray-light;
+  border-bottom: 1px solid $gray-light;
+  @media (max-width: 425px) {
+    padding: 0px 10px;
+    border: none;
+  }
+  &__content {
+    display: flex;
+    &-item {
+      position: relative;
+      font-weight: 700;
+      color: $mainPage_gray;
+    }
+  }
+}
 .order-info__results__wrapper {
   border-left: 1px solid $gray-light;
 }

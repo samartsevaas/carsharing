@@ -1,17 +1,14 @@
 <template>
-    <div>wowo</div>
+  <div>wowo</div>
 </template>
 
 <script>
-
-export default{
-    name: "ConfirmedOrderViews",
-    created: function(){
-console.log(this.$route)
-    }
-}
+export default {
+  name: "ConfirmedOrderViews",
+  created: function () {
+    console.log(this.$route);
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

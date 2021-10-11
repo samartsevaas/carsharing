@@ -9,7 +9,9 @@
       </div>
     </div>
     <div class="order-additionally__section">
-      <div class="order-additionally__section-title_margin-top">Датa аренды</div>
+      <div class="order-additionally__section-title_margin-top">
+        Датa аренды
+      </div>
       <div class="order-additionally__section-search">
         <div class="order-additionally__section-text">
           <div class="order-additionally__section-date_from">C</div>

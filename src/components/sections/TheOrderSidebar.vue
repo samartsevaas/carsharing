@@ -1,42 +1,60 @@
 <template>
-    <div class="order-info__results">
-                <div class="order-info__results-final-order">Ваш заказ:</div>
-                <div class="order-info__results-pick-point">
-                  <div class="order-info__results-pick-point-item_1">
-                    Пункт выдачи
-                  </div>
-                  <div class="order-info__results-pick-point-item_2"></div>
-                  <div class="order-info__results-pick-point-item_3">
-                    <div>Ульяновск</div>
-                    <div>Нариманова</div>
-                  </div>
-                </div>
-                <div class="order-info__results-final-price">
-                  <span>Цена:</span> от 8 000 до 12 000 ₽
-                </div>
-                <div class="order-info__results-final-offer">
-                  <base-button
-                    class="temporaryVisual fullWidth"
-                    href=""
-                  >
-                    Выбрать модель
-                  </base-button>
-                </div>
-              </div>
+  <div class="order-info__results">
+    <base-modal v-show="isModalVisible" @close="closeModal">
+      <template v-slot:title> Подтвердить заказ </template>
+      <template v-slot:confirm>
+        <base-button theme="main-green">Подтвердить</base-button>
+      </template>
+      <template v-slot:cancel>
+        <base-button theme="red">Вернуться</base-button>
+      </template>
+    </base-modal>
+    <div class="order-info__results-final-order">Ваш заказ:</div>
+    <div class="order-info__results-pick-point">
+      <div class="order-info__results-pick-point-item_1">Пункт выдачи</div>
+      <div class="order-info__results-pick-point-item_2"></div>
+      <div class="order-info__results-pick-point-item_3">
+        <div>Ульяновск</div>
+        <div>Нариманова</div>
+      </div>
+    </div>
+    <div class="order-info__results-final-price">
+      <span>Цена:</span> от 8 000 до 12 000 ₽
+    </div>
+    <div class="order-info__results-final-offer">
+      <base-button @click="showModal" class="temporaryVisual fullWidth">
+        Выбрать модель
+      </base-button>
+    </div>
+  </div>
 </template>
 
 <script>
 import BaseButton from "@elements/BaseButton.vue";
+import BaseModal from "@elements/BaseModal.vue";
 
 export default {
   name: "TheOrderSidebar",
   components: {
-    BaseButton
-  }
+    BaseButton,
+    BaseModal,
+  },
+  data() {
+    return {
+      isModalVisible: false,
+    };
+  },
+  methods: {
+    showModal: function () {
+      this.isModalVisible = true;
+    },
+    closeModal: function () {
+      this.isModalVisible = false;
+    },
+  },
 };
 </script>
 <style lang="scss">
-
 .order-info {
   display: flex;
   height: 100%;

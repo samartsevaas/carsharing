@@ -1,30 +1,21 @@
 <template>
-    <nav class="order-panel">
-            <div
-              class="order-panel__content main-content__wrapper_nonPaddingBot"
-            >
-              <div class="order-panel__content-item">
-                <router-link to="/order/location">Местоположение</router-link>
-              </div>
-              <div class="order-panel__content-item">
-                <router-link to="/order/models">Модель</router-link>
-              </div>
-              <div class="order-panel__content-item">
-                <router-link to="/order/additionally"
-                  >Дополнительно</router-link
-                >
-              </div>
-              <div class="order-panel__content-item">
-                <router-link to="/order/result"
-                  >Итого</router-link
-                >
-                </div>
-            </div>
-          </nav>
+  <div class="order-panel__content main-content__wrapper_nonPaddingBot">
+    <div class="order-panel__content-item">
+      <router-link to="/order/location">Местоположение</router-link>
+    </div>
+    <div class="order-panel__content-item">
+      <router-link to="/order/models">Модель</router-link>
+    </div>
+    <div class="order-panel__content-item">
+      <router-link to="/order/additionally">Дополнительно</router-link>
+    </div>
+    <div class="order-panel__content-item">
+      <router-link to="/order/result">Итого</router-link>
+    </div>
+  </div>
 </template>
 
 <script>
-
 export default {
   name: "BaseNavigation",
   computed: {
@@ -39,22 +30,7 @@ export default {
 .order-info__results__wrapper {
   border-left: 1px solid $gray-light;
 }
-.order-panel {
-  border-top: 1px solid $gray-light;
-  border-bottom: 1px solid $gray-light;
-  @media (max-width: 425px) {
-    padding: 0px 10px;
-    border: none;
-  }
-  &__content {
-    display: flex;
-    &-item {
-      position: relative;
-      font-weight: 700;
-      color: $mainPage_gray;
-    }
-  }
-}
+
 .order-panel__content-item:not(:first-child) {
   padding: 8px 16px;
 }

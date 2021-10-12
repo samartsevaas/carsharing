@@ -4,6 +4,7 @@
     class="base-button"
     :class="[getTheme]"
     v-bind="definedTag.atributes"
+    v-on="$listeners"
   >
     <slot></slot>
   </component>
@@ -55,7 +56,7 @@ export default {
 <style lang="scss">
 .base-button {
   height: 48px;
-  min-width: 250px;
+  min-width: 200px;
   outline: none;
   border-radius: 8px;
   border: none;
@@ -110,7 +111,7 @@ export default {
     background: linear-gradient(90deg, #6d481e 0%, #9e2054 100%);
   }
   &:active {
-    background: linear-gradient(90deg, #6d481e 0%, #9e2054 100%);
+    background: linear-gradient(90deg, #6d481e 0%, #5c0b2c 100%);
   }
 }
 

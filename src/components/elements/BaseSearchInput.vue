@@ -29,7 +29,7 @@ export default {
   border: none;
   border-bottom: 1px solid $gray-dark;
   padding: 0px 0px 3px 8px;
-  margin-top: 13px;
+  margin-top: 8px;
   &::placeholder {
     color: $gray-dark;
     font-family: "Roboto", sans-serif;

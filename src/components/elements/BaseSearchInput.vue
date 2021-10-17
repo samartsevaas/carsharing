@@ -5,7 +5,16 @@
       class="base-search__input"
       type="search"
       :placeholder="placeholder"
+      v-bind:value="value"
+      v-on:input="$emit('input', $event.target.value)"
+      :list="id"
+      autocomplete="false"
+      role="presentation"
+      autofill="off"
     />
+    <datalist :id="id">
+      <slot name="options"></slot>
+    </datalist>
   </div>
 </template>
 
@@ -16,6 +25,12 @@ export default {
     placeholder: {
       type: String,
       default: "Введите текст",
+    },
+    value: {
+      type: String,
+    },
+    id: {
+      type: Number,
     },
   },
 };

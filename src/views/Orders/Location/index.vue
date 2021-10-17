@@ -6,10 +6,30 @@
         <div class="order-location-pick">Пункт Выдачи</div>
       </div>
       <div class="order-location__input">
-        <base-search-input placeholder="Введите город"></base-search-input>
+        <base-search-input
+          placeholder="Введите город"
+          v-model="currentCity"
+          @input="updateCurrentCity"
+          :id="1"
+        >
+          <template #options>
+            <option
+              v-for="item in allCities"
+              :key="item.id"
+              :value="item.name"
+            ></option>
+          </template>
+        </base-search-input>
         <base-search-input
           placeholder="Введите пункт выдачи"
-        ></base-search-input>
+          :id="2"
+          v-model="currentPoint"
+          @input="updateCurrentPoint"
+        >
+          <template #options>
+            <option v-for="p in allPoints" :key="p.id">{{ p.name }}</option>
+          </template></base-search-input
+        >
       </div>
     </div>
     <div class="order-info__option-map">
@@ -22,13 +42,53 @@
 </template>
 
 <script>
+//eslint-disable-next-line no-unused-vars
 import BaseSearchInput from "@elements/BaseSearchInput.vue";
+import { mapGetters, mapActions, mapMutations } from "vuex";
+
 export default {
   name: "OrderLocationViews",
   components: { BaseSearchInput },
+  data() {
+    return {
+      currentCity: "",
+      currentPoint: "",
+    };
+  },
+  methods: {
+    ...mapActions({
+      getListOfPoints: "location/getListOfPoints",
+    }),
+    ...mapMutations({
+      setCurrentCity: "location/setCurrentCity",
+      setCurrentPoint: "location/setCurrentPoint",
+    }),
+
+    updateCurrentCity() {
+      this.setCurrentCity(this.currentCity);
+    },
+    updateCurrentPoint() {
+      this.setCurrentPoint(this.currentPoint);
+    },
+  },
   computed: {
+    ...mapGetters("location", ["allCities"]),
+    ...mapGetters("location", ["allPoints"]),
+
     link() {
       return "location";
+    },
+    getCurrentcityId() {
+      return (
+        this.allCities.find((item) => item.name === this.currentCity) ?? {}
+      ).id;
+    },
+  },
+  watch: {
+    async getCurrentcityId(newData) {
+      if (newData) {
+        await this.getListOfPoints(newData);
+      }
     },
   },
 };

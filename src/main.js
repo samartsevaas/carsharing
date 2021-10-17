@@ -1,4 +1,6 @@
 import Vue from "vue";
+import Vuex from "vuex";
+
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -23,6 +25,7 @@ library.add(faMapMarkerAlt);
 import EasySlider from "vue-easy-slider";
 
 Vue.use(EasySlider);
+Vue.use(Vuex);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

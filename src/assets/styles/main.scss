@@ -24,6 +24,8 @@
   src: local('RobotoBold'), url('~@/assets/fonts/Roboto-Bold.woff2') format('woff2');
   font-weight: 700;
 }
+@import "vue-select/src/scss/vue-select.scss";
+
 a, button, input {
   cursor: pointer;
 }

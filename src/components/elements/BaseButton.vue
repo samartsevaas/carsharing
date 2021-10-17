@@ -72,6 +72,13 @@ export default {
     width: 100%;
     border-radius: 0;
   }
+  &[disabled] {
+    background: $gray-light;
+    cursor: pointer;
+    &:hover {
+      background: $gray-light;
+    }
+  }
 }
 
 .base-button_main-green {

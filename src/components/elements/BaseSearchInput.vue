@@ -5,15 +5,12 @@
       class="base-search__input"
       type="search"
       :placeholder="placeholder"
-      v-bind:value="value"
-      v-on:input="$emit('input', $event.target.value)"
+      :value="value"
+      @input="$emit('input', $event.target.value)"
       :list="id"
-      autocomplete="false"
-      role="presentation"
-      autofill="off"
     />
     <datalist :id="id">
-      <slot name="options"></slot>
+        <slot name="options"></slot>
     </datalist>
   </div>
 </template>
@@ -46,6 +43,13 @@ export default {
   padding: 0px 0px 3px 8px;
   margin-top: 8px;
   &::placeholder {
+    color: $gray-dark;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  & datalist {
     color: $gray-dark;
     font-family: "Roboto", sans-serif;
     font-weight: 300;

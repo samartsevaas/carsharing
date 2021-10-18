@@ -40,7 +40,6 @@ export default {
 }
 .main-page__info-service,
 .main-page__info-slogan {
-  font-family: "Roboto", sans-serif;
   font-size: 70px;
   font-weight: 700;
   @media (max-width: 1024px) {
@@ -55,10 +54,9 @@ export default {
   color: $main-accent;
 }
 .main-page__info-slogan_long {
-  font-family: "Roboto", sans-serif;
   font-weight: 100;
   font-size: 26px;
-  color: $mainPage_gray;
+  color: $main-gray;
   margin: 34px 0 44px;
   @media (max-width: 430px) {
     font-size: 18px;

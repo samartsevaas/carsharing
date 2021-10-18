@@ -158,7 +158,7 @@ export default {
   &-item_3 {
     display: flex;
     flex-direction: column;
-    color: $gray-light;
+    color: $main-gray;
     font-weight: 300;
     & div {
       align-self: flex-end;

@@ -44,8 +44,7 @@ export default {
   }
 }
 .main-footer__copyright {
-  color: $mainFooter_gray;
-  font-family: "Roboto", sans-serif;
+  color: $main-gray;
   font-weight: 300;
   font-size: 13px;
   flex: 1;
@@ -54,7 +53,6 @@ export default {
   }
 }
 .main-footer__telephone-link {
-  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 14px;
   color: #eeeeee;

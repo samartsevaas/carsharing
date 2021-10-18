@@ -61,7 +61,6 @@ export default {
   border-radius: 8px;
   border: none;
   color: $backGroundBurgerButton;
-  font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 500;
   display: flex;

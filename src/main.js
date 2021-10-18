@@ -23,6 +23,9 @@ library.add(faFacebook);
 library.add(faInstagram);
 library.add(faMapMarkerAlt);
 import EasySlider from "vue-easy-slider";
+import Services from './services';
+Vue.prototype.$services = Services;
+store.$services = Services;
 
 Vue.use(EasySlider);
 Vue.use(Vuex);

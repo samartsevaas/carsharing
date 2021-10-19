@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const BaseUrl = 'https://api-factory.simbirsoft1.com/api/db';
-const AuthToken = '5e25c641099b810b946c5d5b';
+const AuthToken = process.env.VUE_APP_API_KEY
+
 
 export class BaseService {
     constructor() {

@@ -3,7 +3,8 @@
     <div class="order-location__search">
       <div class="order-location-text">
         <div class="order-location-city">Город</div>
-        <div class="order-location-pick">Пункт Выдачи</div>
+        <div class="order-location-pick"
+        v-show="isInputPointVisible">Пункт Выдачи</div>
       </div>
       <div class="order-location__input">
         <base-search-input

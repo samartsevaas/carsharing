@@ -1,4 +1,6 @@
 import Vue from "vue";
+import Vuex from "vuex";
+
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -21,8 +23,12 @@ library.add(faFacebook);
 library.add(faInstagram);
 library.add(faMapMarkerAlt);
 import EasySlider from "vue-easy-slider";
+import Services from './services';
+Vue.prototype.$services = Services;
+store.$services = Services;
 
 Vue.use(EasySlider);
+Vue.use(Vuex);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

@@ -39,7 +39,6 @@ export default {
     &-item {
       position: relative;
       font-weight: 700;
-      color: $mainPage_gray;
     }
   }
 }

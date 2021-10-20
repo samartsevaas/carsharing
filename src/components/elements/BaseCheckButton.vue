@@ -18,7 +18,7 @@ export default {
   font-weight: 300;
   font-size: 14px;
   line-height: 16px;
-  color: $mainPage_gray;
+  color: $main-gray;
   padding-left: 1.7em;
   margin-right: 18px;
   &:hover {

@@ -11,19 +11,23 @@
     </base-modal>
     <div class="order-info__results-final-order">Ваш заказ:</div>
     <div class="order-info__results-pick-point">
-      <div class="order-info__results-pick-point-item_1">Пункт выдачи</div>
+      <div class="order-info__results-pick-point-item_1">{{ point }}</div>
       <div class="order-info__results-pick-point-item_2"></div>
       <div class="order-info__results-pick-point-item_3">
-        <div>Ульяновск</div>
-        <div>Нариманова</div>
+        <div>{{ currentCity }}</div>
+        <div>{{ currentPoint }}</div>
       </div>
     </div>
     <div class="order-info__results-final-price">
-      <span>Цена:</span> от 8 000 до 12 000 ₽
+      <span>Цена:</span>
     </div>
     <div class="order-info__results-final-offer">
-      <base-button @click="showModal" class="temporaryVisual fullWidth">
-        Выбрать модель
+      <base-button
+        class="temporaryVisual fullWidth"
+        v-on="getButtonConfig.events"
+        :disabled="!getButtonConfig.disabled"
+      >
+        {{ getButtonConfig.text }}
       </base-button>
     </div>
   </div>
@@ -32,6 +36,11 @@
 <script>
 import BaseButton from "@elements/BaseButton.vue";
 import BaseModal from "@elements/BaseModal.vue";
+import { mapGetters, mapState } from "vuex";
+//eslint-disable-next-line no-unused-vars
+const TEXT_MAP = {
+  point: "Пункт выдачи",
+};
 
 export default {
   name: "TheOrderSidebar",
@@ -42,7 +51,43 @@ export default {
   data() {
     return {
       isModalVisible: false,
+      point: "Пункт выдачи",
     };
+  },
+  computed: {
+    ...mapState({
+      currentCity: (state) => state.location.currentCity,
+      currentPoint: (state) => state.location.currentPoint,
+    }),
+    ...mapGetters({
+      getOrderData: "getOrderData",
+    }),
+    buttonConfig() {
+      return {
+        location: {
+          text: "Выбрать модель",
+          disabled: this.currentCity && this.currentPoint,
+          events: {
+            click: () => {
+              this.$router.push("models");
+            },
+          },
+        },
+        models: {
+          text: "Дополнительно",
+          disabled: "",
+          events: {
+            click: () => {
+              this.$router.push("additionally");
+            },
+          },
+        },
+      };
+    },
+    getButtonConfig() {
+      const [, , getCurrentKey] = this.$route.path.split("/");
+      return this.buttonConfig[getCurrentKey];
+    },
   },
   methods: {
     showModal: function () {
@@ -113,7 +158,7 @@ export default {
   &-item_3 {
     display: flex;
     flex-direction: column;
-    color: $gray-light;
+    color: $main-gray;
     font-weight: 300;
     & div {
       align-self: flex-end;

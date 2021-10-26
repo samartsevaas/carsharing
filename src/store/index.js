@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import location from "@modules/LocationData.js";
+import models from "@modules/Cars.js"
 
 Vue.use(Vuex);
 
@@ -10,13 +11,18 @@ export default new Vuex.Store({
       namespaced: true,
       ...location,
     },
+    cars: {
+      namespaced: true,
+      ...models,
+    }
   },
   getters: {
     getOrderData(state, getters, rootState) {
-      const { currrentCity: city, currrentPoint: point } = rootState.location;
+      const { currentCity: city, currentPoint: point} = rootState.location;
+      const { userChooseModel: model } = rootState.cars;
       return {
-        city,
-        point,
+        point: city && `${city}, ${point}`,
+        model
       };
     },
   },

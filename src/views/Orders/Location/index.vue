@@ -3,8 +3,9 @@
     <div class="order-location__search">
       <div class="order-location-text">
         <div class="order-location-city">Город</div>
-        <div class="order-location-pick"
-        v-show="isInputPointVisible">Пункт Выдачи</div>
+        <div class="order-location-pick" v-show="isInputPointVisible">
+          Пункт Выдачи
+        </div>
       </div>
       <div class="order-location__input">
         <base-search-input
@@ -49,26 +50,23 @@ import BaseSearchInput from "@elements/BaseSearchInput.vue";
 import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
-  
   name: "OrderLocationViews",
   components: { BaseSearchInput },
   data() {
     return {
-      currentCity: '',
-      currentPoint: '',
-      isInputPointVisible: true
+      currentCity: "",
+      currentPoint: "",
+      isInputPointVisible: true,
     };
   },
   methods: {
     ...mapActions({
       getListOfPoints: "location/getListOfPoints",
-  
     }),
     ...mapMutations({
       setCurrentCity: "location/setCurrentCity",
       setCurrentPoint: "location/setCurrentPoint",
     }),
-
     updateCurrentCity() {
       this.setCurrentCity(this.currentCity);
     },
@@ -93,15 +91,18 @@ export default {
     async getCurrentcityId(newData) {
       if (newData) {
         await this.getListOfPoints(newData);
-        if(!this.allPoints.length){
-          alert('Выберите другой город, в выбранном городе отсутствуют пункты выдачи');
+        if (!this.allPoints.length) {
+          alert(
+            "Выберите другой город, в выбранном городе отсутствуют пункты выдачи"
+          );
           this.isInputPointVisible = false;
-          this.currentCity=''
-        }else{
-          return this.isInputPointVisible = true;
+          this.currentCity = "";
+        } else {
+          return (this.isInputPointVisible = true);
         }
       }
     },
+    
   },
 };
 </script>

@@ -8,14 +8,14 @@
       </base-radio-button>
     </nav>
     <div class="order-models__wrapper">
-      <div class="order-models__item-wrapper">
+      <div class="order-models__item-wrapper"
+      v-if="allCars.length"
+      >
         <div
           class="order-models__item"
           v-for="(car, index) in allCars"
           :key="index"
-          :class="{ 'order-models__item_active': userChooseModel === car.name }"
-        >
-        
+          :class="{'order-models__item_active': userChooseModel === car.name}">
           <div class="order-models__item-info">
             <div class="order-models__item-info-model">
             <label for="order-models__item-info-model-input">
@@ -39,6 +39,7 @@
           </div>
         </div>
       </div>
+      <base-loader v-else></base-loader>
     </div>
   </div>
 </template>
@@ -46,9 +47,10 @@
 <script>
 
 import BaseRadioButton from "@elements/BaseRadioButton.vue";
+import BaseLoader from '@elements/BaseLoader.vue'
 import { mapGetters, mapActions, mapState, mapMutations } from "vuex";
 export default {
-  components: { BaseRadioButton },
+  components: { BaseRadioButton, BaseLoader },
   name: "OrderModelsViews",
   data() {
     return {
@@ -87,8 +89,10 @@ export default {
     })
   },
   async mounted () {
-    await this.getListOfCars();
-    await this.getListOfCategories();
+    await Promise.all([
+      this.getListOfCars(),
+      this.getListOfCategories()
+    ]);
   },
 };
 </script>
@@ -165,5 +169,8 @@ export default {
 }
 .radio-styled {
   display: block;
+}
+.loader-position{
+  margin: 0 auto;
 }
 </style>

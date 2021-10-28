@@ -19,7 +19,9 @@
           <div class="main-content__wrapper_nonPaddingBot">
             <div class="order-info">
               <div class="order-info__option">
+                <keep-alive>
                 <router-view></router-view>
+                </keep-alive>
               </div>
               <the-order-sidebar></the-order-sidebar>
             </div>

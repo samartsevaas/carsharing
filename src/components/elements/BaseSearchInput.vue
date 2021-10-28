@@ -10,7 +10,7 @@
       :list="id"
     />
     <datalist :id="id">
-        <slot name="options"></slot>
+      <slot name="options"></slot>
     </datalist>
   </div>
 </template>

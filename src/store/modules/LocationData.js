@@ -2,8 +2,8 @@ export default {
   state: {
     cities: [],
     points: [],
-    currentCity: '',
-    currentPoint: ''
+    currentCity: "",
+    currentPoint: "",
   },
   mutations: {
     getListOfCities(state, cities) {
@@ -26,9 +26,9 @@ export default {
       commit("getListOfCities", data);
     },
     //eslint-disable-next-line no-unused-vars
-    async getListOfPoints({ commit }, cityId ){
-    const data = await this.$services.point.getListOfPoints(cityId);
-    commit("getListOfPoints", data);
+    async getListOfPoints({ commit }, cityId) {
+      const data = await this.$services.point.getListOfPoints(cityId);
+      commit("getListOfPoints", data);
     },
   },
   getters: {

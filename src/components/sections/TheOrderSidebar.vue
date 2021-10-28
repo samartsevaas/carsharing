@@ -10,16 +10,15 @@
       </template>
     </base-modal>
     <div class="order-info__results-final-order">Ваш заказ:</div>
-    <div class="order-info__results-pick-point">
-      <div class="order-info__results-pick-point-item_1">{{ point }}</div>
+    <div class="order-info__results-pick-point" v-for="(item, key) in getOrderData" :key="key" v-show="item">
+      <div class="order-info__results-pick-point-item_1">{{ $options.textMap[key] }}</div>
       <div class="order-info__results-pick-point-item_2"></div>
       <div class="order-info__results-pick-point-item_3">
-        <div>{{ currentCity }}</div>
-        <div>{{ currentPoint }}</div>
+        <div>{{ item }}</div>
       </div>
     </div>
     <div class="order-info__results-final-price">
-      <span>Цена:</span>
+      <span></span>
     </div>
     <div class="order-info__results-final-offer">
       <base-button
@@ -40,9 +39,11 @@ import { mapGetters, mapState } from "vuex";
 //eslint-disable-next-line no-unused-vars
 const TEXT_MAP = {
   point: "Пункт выдачи",
+  model: 'Модель'
 };
 
 export default {
+  textMap: TEXT_MAP,
   name: "TheOrderSidebar",
   components: {
     BaseButton,
@@ -51,13 +52,13 @@ export default {
   data() {
     return {
       isModalVisible: false,
-      point: "Пункт выдачи",
     };
   },
   computed: {
     ...mapState({
       currentCity: (state) => state.location.currentCity,
       currentPoint: (state) => state.location.currentPoint,
+      userChooseModel: (state) => state.cars.userChooseModel
     }),
     ...mapGetters({
       getOrderData: "getOrderData",
@@ -75,7 +76,7 @@ export default {
         },
         models: {
           text: "Дополнительно",
-          disabled: "",
+          disabled: this.userChooseModel,
           events: {
             click: () => {
               this.$router.push("additionally");

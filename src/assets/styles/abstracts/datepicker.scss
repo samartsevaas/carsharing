@@ -1,0 +1,10 @@
+$default-color: $gray-dark;
+$primary-color: $main-accent;
+
+.mx-input{
+    border: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid $gray-dark !important;
+    border-radius: 0px !important;
+}
+@import '~vue2-datepicker/scss/index.scss';

@@ -13,7 +13,6 @@
 <script>
 export default {
   name: "BaseButton",
-
   props: {
     theme: {
       type: String,

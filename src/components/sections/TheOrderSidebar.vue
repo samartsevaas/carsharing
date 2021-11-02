@@ -81,6 +81,9 @@ export default {
       currentFullTank: (state) => state.cars.currentFullTank,
       currentChildSeat: (state) => state.cars.currentChildSeat,
       currentHandDrive: (state) => state.cars.currentHandDrive,
+      rateId: (state) => state.cars.rateId,
+      dateFrom: (state) => state.cars.dateFrom,
+      dateTo: (state) => state.cars.dateTo,
     }),
     ...mapGetters({
       getOrderData: "getOrderData",
@@ -114,7 +117,9 @@ export default {
             this.currentPoint &&
             this.userChooseModel &&
             this.currentColor &&
-            this.dateForUser,
+            this.dateFrom &&
+            this.dateTo &&
+            this.rateId,
           events: {
             click: () => {
               this.$router.push("result");

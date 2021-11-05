@@ -1,8 +1,12 @@
 <template>
   <label class="base-radio radio-styled">
-    <input type="radio" name="models" class="base-radio__input" :value="value" @input="$emit('input', $event.target.value)" /><span
-      class="base-radio__button"
-    ></span>
+    <input
+      type="radio"
+      :name="name"
+      class="base-radio__input"
+      :value="value"
+      @input="$emit('input', $event.target.value)"
+    /><span class="base-radio__button"></span>
     <slot></slot>
   </label>
 </template>
@@ -11,19 +15,22 @@
 export default {
   name: "BaseRadioButton",
   model: {
-        prop: 'selected',
-        event: 'input',
+    prop: "selected",
+    event: "input",
+  },
+  props: {
+    selected: {
+      type: String,
+      required: true,
     },
-  props:{
-     selected: {
-            type: String,
-            required: true,
-        },
-     value: {
-            type: [String,Number],
-            required: true,
-        },
-  }
+    value: {
+      type: [String, Number],
+      required: true,
+    },
+    name: {
+      type: [String, Number],
+    },
+  },
 };
 </script>
 

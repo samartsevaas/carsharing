@@ -10,15 +10,27 @@
       </template>
     </base-modal>
     <div class="order-info__results-final-order">Ваш заказ:</div>
-    <div class="order-info__results-pick-point" v-for="(item, key) in getOrderData" :key="key" v-show="item">
-      <div class="order-info__results-pick-point-item_1">{{ $options.textMap[key] }}</div>
+    <div
+      class="order-info__results-pick-point"
+      v-for="(item, key) in getOrderData"
+      :key="key"
+      v-show="item"
+    >
+      <div class="order-info__results-pick-point-item_1">
+        {{ $options.textMap[key] }}
+      </div>
       <div class="order-info__results-pick-point-item_2"></div>
       <div class="order-info__results-pick-point-item_3">
-        <div>{{ item }}</div>
+        <div>{{ typeof item === "boolean" ? "Да" : item }}</div>
       </div>
     </div>
-    <div class="order-info__results-final-price">
-      <span></span>
+    <div
+      class="order-info__results-final-price"
+      v-for="(itm, index) in getFinalPriceForUser"
+      :key="index"
+      v-show="itm"
+    >
+      <span>Цена: {{ itm }} ₽ </span>
     </div>
     <div class="order-info__results-final-offer">
       <base-button
@@ -39,7 +51,13 @@ import { mapGetters, mapState } from "vuex";
 //eslint-disable-next-line no-unused-vars
 const TEXT_MAP = {
   point: "Пункт выдачи",
-  model: 'Модель'
+  model: "Модель",
+  currentColor: "Цвет",
+  dateForUser: "Длительность аренды",
+  currentFullTank: "Полный бак",
+  currentChildSeat: "Детское кресло",
+  currentHandDrive: "Правый руль",
+  name: "Тариф",
 };
 
 export default {
@@ -58,10 +76,15 @@ export default {
     ...mapState({
       currentCity: (state) => state.location.currentCity,
       currentPoint: (state) => state.location.currentPoint,
-      userChooseModel: (state) => state.cars.userChooseModel
+      userChooseModel: (state) => state.cars.userChooseModel,
+      currentColor: (state) => state.cars.currentColor,
+      rateId: (state) => state.cars.rateId,
+      dateFrom: (state) => state.cars.dateFrom,
+      dateTo: (state) => state.cars.dateTo,
     }),
     ...mapGetters({
       getOrderData: "getOrderData",
+      getFinalPriceForUser: "getFinalPriceForUser",
     }),
     buttonConfig() {
       return {
@@ -76,10 +99,27 @@ export default {
         },
         models: {
           text: "Дополнительно",
-          disabled: this.userChooseModel,
+          disabled:
+            this.currentCity && this.currentPoint && this.userChooseModel,
           events: {
             click: () => {
               this.$router.push("additionally");
+            },
+          },
+        },
+        additionally: {
+          text: "Итого",
+          disabled:
+            this.currentCity &&
+            this.currentPoint &&
+            this.userChooseModel &&
+            this.currentColor &&
+            this.dateFrom &&
+            this.dateTo &&
+            this.rateId,
+          events: {
+            click: () => {
+              this.$router.push("result");
             },
           },
         },

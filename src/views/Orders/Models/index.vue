@@ -1,29 +1,37 @@
 <template>
   <div>
-    <nav class="order-models__navigation"> 
-      <base-radio-button v-model="currentCategory" v-for="(c, idx) in categories" :key="idx" 
-       :value='c.id'
-       @input="updateCurrentCategory">
-      <slot>{{c.name}}</slot>
+    <nav class="order-models__navigation">
+      <base-radio-button
+        v-model="currentCategory"
+        v-for="(c, idx) in categories"
+        name='models'
+        :key="idx"
+        :value="c.id"
+        @input="updateCurrentCategory"
+      >
+        <slot>{{ c.name }}</slot>
       </base-radio-button>
     </nav>
     <div class="order-models__wrapper">
-      <div class="order-models__item-wrapper">
+      <div class="order-models__item-wrapper" v-if="allCars.length">
         <div
           class="order-models__item"
           v-for="(car, index) in allCars"
           :key="index"
           :class="{ 'order-models__item_active': userChooseModel === car.name }"
         >
-        
           <div class="order-models__item-info">
             <div class="order-models__item-info-model">
-            <label for="order-models__item-info-model-input">
-              {{ car.name }}
-              <input class="order-models__item-info-model-input" type="radio" v-model="userChooseModel" 
-              :value="car.name" 
-              @change="updateUserChooseModel">
-             </label>
+              <label for="order-models__item-info-model-input">
+                {{ car.name }}
+                <input
+                  class="order-models__item-info-model-input"
+                  type="radio"
+                  v-model="userChooseModel"
+                  :value="car.name"
+                  @change="updateUserChooseModel"
+                />
+              </label>
             </div>
             <div class="order-models__item-info-price">
               {{ car.priceMax }}
@@ -39,61 +47,60 @@
           </div>
         </div>
       </div>
+      <base-loader v-else></base-loader>
     </div>
   </div>
 </template>
 
 <script>
-
 import BaseRadioButton from "@elements/BaseRadioButton.vue";
+import BaseLoader from "@elements/BaseLoader.vue";
 import { mapGetters, mapActions, mapState, mapMutations } from "vuex";
 export default {
-  components: { BaseRadioButton },
+  components: { BaseRadioButton, BaseLoader },
   name: "OrderModelsViews",
   data() {
     return {
-      currentCategory: '',
-      userChooseModel: '',
-      isChecked: false
+      currentCategory: "",
+      userChooseModel: "",
+      isChecked: false,
     };
   },
   methods: {
     ...mapActions({
-      getListOfCars: 'cars/getListOfCars',
-      getListOfCategories: 'cars/getListOfCategories',
-      getcarsByCategory: 'cars/getcarsByCategory'
+      getListOfCars: "cars/getListOfCars",
+      getListOfCategories: "cars/getListOfCategories",
+      getcarsByCategory: "cars/getcarsByCategory",
     }),
     ...mapMutations({
-      setCurrentCategory: 'cars/setCurrentCategory',
-      setUserChooseModel: 'cars/setUserChooseModel'
+      setCurrentCategory: "cars/setCurrentCategory",
+      setUserChooseModel: "cars/setUserChooseModel",
     }),
     async updateCurrentCategory() {
       this.setCurrentCategory(this.currentCategory);
       await this.getcarsByCategory(this.currentCategory);
     },
-    updateUserChooseModel(){
-      this.setUserChooseModel(this.userChooseModel)
+    updateUserChooseModel() {
+      this.setUserChooseModel(this.userChooseModel);
     },
-    checkModel(){
-    this.isChecked = !this.isChecked;
+    checkModel() {
+      this.isChecked = !this.isChecked;
+    },
   },
-  },
-  computed:{
+  computed: {
     ...mapGetters({
-      allCars: 'cars/allCars'
+      allCars: "cars/allCars",
     }),
     ...mapState({
-      categories:state=>state.cars.categories
-    })
+      categories: (state) => state.cars.categories,
+    }),
   },
-  async mounted () {
-    await this.getListOfCars();
-    await this.getListOfCategories();
+  async mounted() {
+    await Promise.all([this.getListOfCars(), this.getListOfCategories()]);
   },
 };
 </script>
 <style lang="scss" scoped>
-
 .order-models__navigation {
   display: flex;
   margin: 32px 0px 48px 0px;
@@ -144,26 +151,29 @@ export default {
     letter-spacing: 0em;
     color: $gray-dark;
   }
-  &-model-input{
-  opacity: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
+  &-model-input {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
     right: 0;
     margin: auto;
-        top: 0;
+    top: 0;
     bottom: 0;
-}
+  }
 }
 .order-models__item-img {
   display: flex;
   justify-content: center;
-  & img{
+  & img {
     max-width: 200px;
   }
 }
 .radio-styled {
   display: block;
+}
+.loader-position {
+  margin: 0 auto;
 }
 </style>

@@ -1,9 +1,9 @@
 import { BaseService } from "../base";
 
-export class ModelService extends BaseService {
-  async getListOfCars() {
+export class RateService extends BaseService {
+  async getRate() {
     const data = await this.send({
-      url: "/car",
+      url: "/rate",
     });
     return data;
   }

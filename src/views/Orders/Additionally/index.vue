@@ -3,9 +3,16 @@
     <div class="order-additionally__section">
       <div class="order-additionally__section-title">Цвет</div>
       <div class="order-additionally__section-radio">
-        <base-radio-button>Любой</base-radio-button>
-        <base-radio-button>Красный</base-radio-button>
-        <base-radio-button>Голубой</base-radio-button>
+        <base-radio-button
+          v-for="(color, idx) in selectedModelColorfromUser"
+          :key="idx"
+          :value="color"
+          name="color"
+          v-model="currentColor"
+          @input="updateCurrentColor"
+        >
+          <slot>{{ color }}</slot>
+        </base-radio-button>
       </div>
     </div>
     <div class="order-additionally__section">
@@ -18,12 +25,30 @@
           <div class="order-additionally__section-date_to">По</div>
         </div>
         <div class="order-additionally__section-input">
-          <base-search-input
+          <date-picker
+            v-model="dateFrom"
+            type="datetime"
+            format="DD.M.YYYY, HH:mm"
             placeholder="Введите дату и время"
-          ></base-search-input>
-          <base-search-input
+            value-type="timestamp"
+            :minute-step="30"
+            :disabled-date="disableDateIntoPickerFrom"
+            :disabled-time="disableTimeIntoPickerFrom"
+            :default-value="new Date(this.dateFrom).setHours()"
+            @input="updateCurrentDateFrom"
+          ></date-picker>
+          <date-picker
+            v-model="dateTo"
+            type="datetime"
+            format="DD.M.YYYY, HH:mm"
             placeholder="Введите дату и время"
-          ></base-search-input>
+            value-type="timestamp"
+            :minute-step="30"
+            :disabled-date="disableDateIntoPickerTo"
+            :disabled-time="disableTimeIntoPickerTo"
+            :default-value="new Date().setHours(new Date(this.dateFrom).getHours())"
+            @input="updateCurrentDateTo"
+          ></date-picker>
         </div>
       </div>
     </div>
@@ -35,16 +60,39 @@
           order-additionally__section-radio_column
         "
       >
-        <base-radio-button>Поминутно, 7₽/мин</base-radio-button>
-        <base-radio-button>На сутки, 1999 ₽/сутки</base-radio-button>
+        <base-radio-button
+          v-for="rate in getRateForUser"
+          name="rate"
+          :key="rate.id"
+          :value="rate.id"
+          @input="setRateId(currentRate)"
+          v-model="currentRate"
+        >
+          {{ rate.rateTypeId.name }}, {{ rate.price }}₽ /
+          {{ rate.rateTypeId.unit }}</base-radio-button
+        >
       </div>
     </div>
     <div class="order-additionally__section">
       <div class="order-additionally__section-title_margin-top">Доп услуги</div>
       <div class="order-additionally__section-check">
-        <base-check-button>Полный бак, 500р</base-check-button>
-        <base-check-button>Детское кресло, 200р</base-check-button>
-        <base-check-button>Правый руль, 1600р</base-check-button>
+        <base-check-button
+          v-model="currentFullTank"
+          @input="updateCurrentFullTank"
+          >Полный бак/{{ $options.addFunction.fullTank }}₽</base-check-button
+        >
+        <base-check-button
+          v-model="currentChildSeat"
+          @input="updateCurrentChildSeat"
+          >Детское кресло/{{
+            $options.addFunction.childSeat
+          }}₽</base-check-button
+        >
+        <base-check-button
+          v-model="currentHandDrive"
+          @input="updateCurrentHandDrive"
+          >Правый руль/{{ $options.addFunction.rightDrive }}₽</base-check-button
+        >
       </div>
     </div>
   </div>
@@ -52,15 +100,108 @@
 
 <script>
 import BaseRadioButton from "@elements/BaseRadioButton.vue";
-import BaseSearchInput from "@elements/BaseSearchInput.vue";
 import BaseCheckButton from "@elements/BaseCheckButton.vue";
-
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
+import dayjs from "dayjs";
+import { mapGetters, mapState, mapMutations, mapActions } from "vuex";
+const ADDITIONAL_FUNCTION = {
+  fullTank: 300,
+  childSeat: 300,
+  rightDrive: 300,
+};
 export default {
+  addFunction: ADDITIONAL_FUNCTION,
   name: "OrderAdditionallyViews",
   components: {
     BaseRadioButton,
-    BaseSearchInput,
     BaseCheckButton,
+    DatePicker,
+  },
+  data() {
+    return {
+      currentColor: "",
+      dateFrom: null,
+      dateTo: null,
+      currentFullTank: "",
+      currentChildSeat: "",
+      currentHandDrive: "",
+      currentRate: "",
+    };
+  },
+  computed: {
+    ...mapGetters({
+      selectedModelColorfromUser: "cars/selectedModelColorfromUser",
+      selectedModelfromUser: "cars/selectedModelfromUser",
+      getRateForUser: "cars/getRateForUser",
+      getRateById: "cars/getRateById",
+    }),
+    ...mapState({
+      userChooseModel: (state) => state.cars.userChooseModel,
+    }),
+    defaultTimeToPicker(){
+      if (!(dayjs().date() == dayjs(this.dateFrom).date())){
+        return new Date(this.dateFrom).setHours()
+      }
+      return new Date().setHours(0, 0, 0, 0)
+    }
+  },
+  methods: {
+    ...mapMutations({
+      setCurrentDateFrom: "cars/setCurrentDateFrom",
+      setCurrentDateTo: "cars/setCurrentDateTo",
+      setCurrentColor: "cars/setCurrentColor",
+      setRateId: "cars/setRateId",
+      setCurrentFullTank: "cars/setCurrentFullTank",
+      setCurrentChildSeat: "cars/setCurrentChildSeat",
+      setCurrentHandDrive: "cars/setCurrentHandDrive",
+    }),
+    ...mapActions({
+      getRate: "cars/getRate",
+    }),
+    updateCurrentDateFrom() {
+      this.setCurrentDateFrom(this.dateFrom);
+    },
+    updateCurrentDateTo() {
+      this.setCurrentDateTo(this.dateTo);
+    },
+    updateCurrentColor() {
+      this.setCurrentColor(this.currentColor);
+    },
+    updateCurrentAddFuncPrice() {
+      this.setCurrentAddFuncPrice(this.currentFullTank);
+    },
+    updateCurrentFullTank() {
+      this.setCurrentFullTank(this.currentFullTank);
+    },
+    updateCurrentChildSeat() {
+      this.setCurrentChildSeat(this.currentChildSeat);
+    },
+    updateCurrentHandDrive() {
+      this.setCurrentHandDrive(this.currentHandDrive);
+    },
+    disableDateIntoPickerFrom(date){
+      return date < new Date(new Date().setHours(0,0,0,0));
+    },
+    disableTimeIntoPickerFrom(date){
+      let hours = dayjs().hour();
+      let minutes = dayjs().minute();
+      return date < dayjs(dayjs().hour(hours, minutes, 0, 0));
+    },
+     disableDateIntoPickerTo(date){
+       let currentDateFrom = ''
+      if (this.dateFrom){
+        currentDateFrom = dayjs(this.dateFrom).date();
+      }
+      return date < dayjs(dayjs().date(currentDateFrom-1));
+    },
+    disableTimeIntoPickerTo(date){
+       let hour = dayjs(this.dateFrom).hour();
+       return date < dayjs(dayjs().hour(hour,0,0,0));
+    },
+  },
+  async mounted() {
+    await this.getRate();
   },
 };
 </script>
@@ -97,6 +238,7 @@ export default {
   display: flex;
   flex-direction: column;
   margin-right: 8px;
+  justify-content: space-evenly;
 }
 .order-additionally__section-date_from {
   display: flex;

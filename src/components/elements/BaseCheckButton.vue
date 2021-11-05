@@ -1,8 +1,11 @@
 <template>
   <label class="base-checkbox checkbox-styled">
-    <input type="checkbox" class="base-checkbox__input" /><span
-      class="base-checkbox__button"
-    ></span>
+    <input
+      @change="$emit('input', !value)"
+      :checked="value"
+      type="checkbox"
+      class="base-checkbox__input"
+    /><span class="base-checkbox__button"></span>
     <slot></slot>
   </label>
 </template>
@@ -10,6 +13,7 @@
 <script>
 export default {
   name: "BaseCheckboxButton",
+  props: ["value"],
 };
 </script>
 

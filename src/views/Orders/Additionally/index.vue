@@ -32,6 +32,9 @@
             placeholder="Введите дату и время"
             value-type="timestamp"
             :minute-step="30"
+            :disabled-date="disableDateIntoPickerFrom"
+            :disabled-time="disableTimeIntoPickerFrom"
+            :default-value="new Date(this.dateFrom).setHours()"
             @input="updateCurrentDateFrom"
           ></date-picker>
           <date-picker
@@ -41,6 +44,9 @@
             placeholder="Введите дату и время"
             value-type="timestamp"
             :minute-step="30"
+            :disabled-date="disableDateIntoPickerTo"
+            :disabled-time="disableTimeIntoPickerTo"
+            :default-value="new Date().setHours(new Date(this.dateFrom).getHours())"
             @input="updateCurrentDateTo"
           ></date-picker>
         </div>
@@ -97,6 +103,7 @@ import BaseRadioButton from "@elements/BaseRadioButton.vue";
 import BaseCheckButton from "@elements/BaseCheckButton.vue";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
+import dayjs from "dayjs";
 import { mapGetters, mapState, mapMutations, mapActions } from "vuex";
 const ADDITIONAL_FUNCTION = {
   fullTank: 300,
@@ -132,6 +139,12 @@ export default {
     ...mapState({
       userChooseModel: (state) => state.cars.userChooseModel,
     }),
+    defaultTimeToPicker(){
+      if (!(dayjs().date() == dayjs(this.dateFrom).date())){
+        return new Date(this.dateFrom).setHours()
+      }
+      return new Date().setHours(0, 0, 0, 0)
+    }
   },
   methods: {
     ...mapMutations({
@@ -166,6 +179,25 @@ export default {
     },
     updateCurrentHandDrive() {
       this.setCurrentHandDrive(this.currentHandDrive);
+    },
+    disableDateIntoPickerFrom(date){
+      return date < new Date(new Date().setHours(0,0,0,0));
+    },
+    disableTimeIntoPickerFrom(date){
+      let hours = dayjs().hour();
+      let minutes = dayjs().minute();
+      return date < dayjs(dayjs().hour(hours, minutes, 0, 0));
+    },
+     disableDateIntoPickerTo(date){
+       let currentDateFrom = ''
+      if (this.dateFrom){
+        currentDateFrom = dayjs(this.dateFrom).date();
+      }
+      return date < dayjs(dayjs().date(currentDateFrom-1));
+    },
+    disableTimeIntoPickerTo(date){
+       let hour = dayjs(this.dateFrom).hour();
+       return date < dayjs(dayjs().hour(hour,0,0,0));
     },
   },
   async mounted() {

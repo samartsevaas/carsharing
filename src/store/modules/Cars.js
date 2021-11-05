@@ -1,4 +1,3 @@
-import { Math } from "core-js";
 import dayjs from "dayjs";
 export default {
   state: {

@@ -38,5 +38,16 @@ export default {
     allPoints(state) {
       return state.points;
     },
+    getCurrentCityForServer(state, getters) {
+      return (
+        getters.allCities.find((itm) => itm.name === state.currentCity) ?? {}
+      );
+    },
+    getCurrentPointForServer(state, getters) {
+      return (
+        getters.allPoints.find((itm) => itm.address === state.currentPoint) ??
+        {}
+      );
+    },
   },
 };

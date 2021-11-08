@@ -23,10 +23,10 @@ export class BaseService {
    * @param {*} <Object>
    * @description - принимает два поля; method && params (параметры запросы)
    */
-  async send({ method = "get", params = {}, url = "" }) {
+  async send({ method = "get", params = {}, data = {}, url = "" }) {
     const {
-      data: { data },
-    } = await this.api[method](url, { params });
-    return data;
+      data: { data: response },
+    } = await this.api({ method, params, data, url });
+    return response;
   }
 }

@@ -4,7 +4,7 @@
       <base-radio-button
         v-model="currentCategory"
         v-for="(c, idx) in categories"
-        name='models'
+        name="models"
         :key="idx"
         :value="c.id"
         @input="updateCurrentCategory"

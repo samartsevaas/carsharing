@@ -4,6 +4,7 @@ import { ModelService } from "./models";
 import { CategoriesService } from "./categories";
 import { selectedCategoriesService } from "./categories/selectedCategory";
 import { RateService } from "./rate";
+import { orderService } from "./order";
 
 export default {
   city: new CityService(),
@@ -12,4 +13,5 @@ export default {
   categories: new CategoriesService(),
   currentCategory: new selectedCategoriesService(),
   rate: new RateService(),
+  order: new orderService(),
 };

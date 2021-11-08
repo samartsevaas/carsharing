@@ -29,9 +29,6 @@ export default {
     getTheme() {
       return `base-button_${this.theme}`;
     },
-    isDisabled() {
-      return !this.term;
-    },
     definedTag() {
       if (this.href) {
         return {

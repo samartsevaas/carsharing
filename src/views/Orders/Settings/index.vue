@@ -9,7 +9,7 @@
           </div>
           <nav class="order-panel">
             <base-navigation
-              v-if="this.$route.name !== 'confirmed'"
+              v-if="this.$route.path !== '/order/confirmed'"
             ></base-navigation>
             <div v-else>
               <div class="confirmed-order__wrapper">
@@ -55,6 +55,15 @@ export default {
     ...mapState({
       sendOrderData: (state) => state.order.sendOrderData,
     }),
+  },
+  // methods:{
+  //   ...mapActions({
+  //     getOrderDataFromServer:'order/getOrderDataFromServer'
+  //   })
+  // },
+  async mounted() {
+    if (this.$route.path === "/order/confirmed")
+      await this.getOrderDataFromServer(this.sendOrderData.id);
   },
 };
 </script>

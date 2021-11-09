@@ -1,8 +1,8 @@
 <template>
   <div class="order-result">
     <div class="order-result-info">
-      <div v-if="this.$route.name !== 'confirmed'"></div>
-      <div class="confirmed-order" v-else>Ваш заказ подтверждён</div>
+      <!-- <div v-if="this.$route.name !== 'confirmed'"></div> -->
+      <!-- <div class="confirmed-order" v-else>Ваш заказ подтверждён</div> -->
       <div class="order-result-info_model">
         {{ selectedModelfromUser.name }}
       </div>
@@ -84,11 +84,9 @@ export default {
       isFullTank: (state) => state.cars.isFullTank,
     }),
   },
-  async beforeUpdate() {
-    if (this.$route.name === "confirmed") {
-      const request = this.createRequestParams();
-      await this.sendOrderData(request);
-    }
+  async created() {
+    const request = this.createRequestParams();
+    await this.sendOrderData(request);
   },
 };
 </script>

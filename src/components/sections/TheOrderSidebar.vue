@@ -169,7 +169,7 @@ export default {
     },
     confirmedOrder: function () {
       this.closeModal();
-      this.$router.push("/confirmed");
+      this.$router.push("confirmed");
     },
     ...mapActions({
       getOrderStatus: "order/getOrderStatus",

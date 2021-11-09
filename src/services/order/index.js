@@ -15,4 +15,10 @@ export class orderService extends BaseService {
     });
     return data;
   }
+  async getOrderDataFromServer(orderId) {
+    const data = await this.send({
+      url: `/order/${orderId}`,
+    });
+    return data;
+  }
 }

@@ -3,10 +3,12 @@
     <base-modal v-show="isModalVisible" @close="closeModal">
       <template v-slot:title> Подтвердить заказ </template>
       <template v-slot:confirm>
-        <base-button theme="main-green">Подтвердить</base-button>
+        <base-button theme="main-green" @click="confirmedOrder"
+          >Подтвердить</base-button
+        >
       </template>
       <template v-slot:cancel>
-        <base-button theme="red">Вернуться</base-button>
+        <base-button theme="red" @click="closeModal">Вернуться</base-button>
       </template>
     </base-modal>
     <div class="order-info__results-final-order">Ваш заказ:</div>
@@ -37,6 +39,7 @@
         class="temporaryVisual fullWidth"
         v-on="getButtonConfig.events"
         :disabled="!getButtonConfig.disabled"
+        :theme="getButtonConfig.class"
       >
         {{ getButtonConfig.text }}
       </base-button>
@@ -47,16 +50,16 @@
 <script>
 import BaseButton from "@elements/BaseButton.vue";
 import BaseModal from "@elements/BaseModal.vue";
-import { mapGetters, mapState } from "vuex";
+import { mapGetters, mapState, mapActions } from "vuex";
 //eslint-disable-next-line no-unused-vars
 const TEXT_MAP = {
   point: "Пункт выдачи",
   model: "Модель",
   currentColor: "Цвет",
   dateForUser: "Длительность аренды",
-  currentFullTank: "Полный бак",
-  currentChildSeat: "Детское кресло",
-  currentHandDrive: "Правый руль",
+  isFullTank: "Полный бак",
+  isNeedChildChair: "Детское кресло",
+  isRightWheel: "Правый руль",
   name: "Тариф",
 };
 
@@ -85,6 +88,7 @@ export default {
     ...mapGetters({
       getOrderData: "getOrderData",
       getFinalPriceForUser: "getFinalPriceForUser",
+      confirmedOrderStatus: "order/confirmedOrderStatus",
     }),
     buttonConfig() {
       return {
@@ -96,6 +100,7 @@ export default {
               this.$router.push("models");
             },
           },
+          class: "main-green",
         },
         models: {
           text: "Дополнительно",
@@ -106,6 +111,7 @@ export default {
               this.$router.push("additionally");
             },
           },
+          class: "main-green",
         },
         additionally: {
           text: "Итого",
@@ -122,12 +128,36 @@ export default {
               this.$router.push("result");
             },
           },
+          class: "main-green",
+        },
+        result: {
+          text: "Подтвердить заказ",
+          disabled:
+            this.currentCity &&
+            this.currentPoint &&
+            this.userChooseModel &&
+            this.currentColor &&
+            this.dateFrom &&
+            this.dateTo &&
+            this.rateId,
+          events: {
+            click: () => {
+              this.showModal();
+            },
+          },
+          class: "main-green",
+        },
+
+        confirm: {
+          text: "Отменить",
+          disabled: true,
+          class: "red",
         },
       };
     },
     getButtonConfig() {
       const [, , getCurrentKey] = this.$route.path.split("/");
-      return this.buttonConfig[getCurrentKey];
+      return this.buttonConfig[getCurrentKey] || this.buttonConfig.confirm;
     },
   },
   methods: {
@@ -137,6 +167,16 @@ export default {
     closeModal: function () {
       this.isModalVisible = false;
     },
+    confirmedOrder: function () {
+      this.closeModal();
+      this.$router.push("confirmed");
+    },
+    ...mapActions({
+      getOrderStatus: "order/getOrderStatus",
+    }),
+  },
+  async mounted() {
+    await this.getOrderStatus();
   },
 };
 </script>
@@ -144,7 +184,7 @@ export default {
 .order-info {
   display: flex;
   height: 100%;
-  @media (max-width: 700px) {
+  @media (max-width: 840px) {
     display: block;
   }
 }

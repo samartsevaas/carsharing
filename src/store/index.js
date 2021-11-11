@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import location from "@modules/LocationData.js";
 import models from "@modules/Cars.js";
+import order from "@modules/Order.js";
 
 Vue.use(Vuex);
 
@@ -15,6 +16,10 @@ export default new Vuex.Store({
       namespaced: true,
       ...models,
     },
+    order: {
+      namespaced: true,
+      ...order,
+    },
   },
   getters: {
     getOrderData(state, getters, rootState, rootGetters) {
@@ -22,9 +27,9 @@ export default new Vuex.Store({
       const {
         userChooseModel: model,
         currentColor,
-        currentFullTank,
-        currentChildSeat,
-        currentHandDrive,
+        isFullTank,
+        isNeedChildChair,
+        isRightWheel,
       } = rootState.cars;
       const {
         "cars/dateForUser": dateForUser,
@@ -35,9 +40,9 @@ export default new Vuex.Store({
         model,
         currentColor,
         dateForUser,
-        currentFullTank,
-        currentChildSeat,
-        currentHandDrive,
+        isFullTank,
+        isNeedChildChair,
+        isRightWheel,
         name,
       };
     },
@@ -45,6 +50,21 @@ export default new Vuex.Store({
       const { "cars/finalPrice": finalPrice } = rootGetters;
       return {
         finalPrice,
+      };
+    },
+    dataForServer(state, getters, rootState, rootGetters) {
+      const { dateFrom, dateTo } = rootState.cars;
+      const {
+        "cars/selectedModelfromUser": selectedModelfromUser,
+        "location/getCurrentPointForServer": pointId,
+        "location/getCurrentCityForServer": cityId,
+      } = rootGetters;
+      return {
+        dateFrom,
+        dateTo,
+        selectedModelfromUser,
+        pointId,
+        cityId,
       };
     },
   },

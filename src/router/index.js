@@ -6,7 +6,7 @@ import OrderLocationViews from "@views/Orders/Location/index.vue";
 import OrderModelsViews from "@views/Orders/Models/index.vue";
 import OrderAdditionallyViews from "@views/Orders/Additionally/index.vue";
 import OrderResultViews from "@views/Orders/Results/index.vue";
-
+import OrderConfirmedViews from "@views/Orders/Confirmed/index.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -24,14 +24,15 @@ const routes = [
       { path: "models", component: OrderModelsViews },
       { path: "additionally", component: OrderAdditionallyViews },
       { path: "result", component: OrderResultViews },
+      { path: "confirmed", component: OrderConfirmedViews },
     ],
   },
-  {
-    path: "/confirmed",
-    name: "ConfirmedOrder",
-    component: OrderViews,
-    children: [{ path: "/", component: OrderResultViews, name: "confirmed" }],
-  },
+  // {
+  //   path: "/confirmed",
+  //   name: "ConfirmedOrder",
+  //   component: OrderViews,
+  //   children: [{ path: "/", component: OrderResultViews, name: "confirmed" }],
+  // },
 ];
 
 const router = new VueRouter({

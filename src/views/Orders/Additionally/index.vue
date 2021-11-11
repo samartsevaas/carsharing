@@ -34,7 +34,7 @@
             :minute-step="30"
             :disabled-date="disableDateIntoPickerFrom"
             :disabled-time="disableTimeIntoPickerFrom"
-            :default-value="new Date(this.dateFrom).setHours()"
+            :default-value="defaultTimeToPickerFrom"
             @input="updateCurrentDateFrom"
           ></date-picker>
           <date-picker
@@ -46,7 +46,8 @@
             :minute-step="30"
             :disabled-date="disableDateIntoPickerTo"
             :disabled-time="disableTimeIntoPickerTo"
-            :default-value="new Date().setHours(new Date(this.dateFrom).getHours())"
+            :default-value="defaultTimeToPickerTo
+            "
             @input="updateCurrentDateTo"
           ></date-picker>
         </div>
@@ -76,20 +77,18 @@
     <div class="order-additionally__section">
       <div class="order-additionally__section-title_margin-top">Доп услуги</div>
       <div class="order-additionally__section-check">
-        <base-check-button
-          v-model="currentFullTank"
-          @input="updateCurrentFullTank"
+        <base-check-button v-model="isFullTank" @input="updateCurrentFullTank"
           >Полный бак/{{ $options.addFunction.fullTank }}₽</base-check-button
         >
         <base-check-button
-          v-model="currentChildSeat"
+          v-model="isNeedChildChair"
           @input="updateCurrentChildSeat"
           >Детское кресло/{{
             $options.addFunction.childSeat
           }}₽</base-check-button
         >
         <base-check-button
-          v-model="currentHandDrive"
+          v-model="isRightWheel"
           @input="updateCurrentHandDrive"
           >Правый руль/{{ $options.addFunction.rightDrive }}₽</base-check-button
         >
@@ -123,9 +122,9 @@ export default {
       currentColor: "",
       dateFrom: null,
       dateTo: null,
-      currentFullTank: "",
-      currentChildSeat: "",
-      currentHandDrive: "",
+      isFullTank: "",
+      isNeedChildChair: "",
+      isRightWheel: "",
       currentRate: "",
     };
   },
@@ -139,12 +138,6 @@ export default {
     ...mapState({
       userChooseModel: (state) => state.cars.userChooseModel,
     }),
-    defaultTimeToPicker(){
-      if (!(dayjs().date() == dayjs(this.dateFrom).date())){
-        return new Date(this.dateFrom).setHours()
-      }
-      return new Date().setHours(0, 0, 0, 0)
-    }
   },
   methods: {
     ...mapMutations({
@@ -169,36 +162,42 @@ export default {
       this.setCurrentColor(this.currentColor);
     },
     updateCurrentAddFuncPrice() {
-      this.setCurrentAddFuncPrice(this.currentFullTank);
+      this.setCurrentAddFuncPrice(this.isFullTank);
     },
     updateCurrentFullTank() {
-      this.setCurrentFullTank(this.currentFullTank);
+      this.setCurrentFullTank(this.isFullTank);
     },
     updateCurrentChildSeat() {
-      this.setCurrentChildSeat(this.currentChildSeat);
+      this.setCurrentChildSeat(this.isNeedChildChair);
     },
     updateCurrentHandDrive() {
-      this.setCurrentHandDrive(this.currentHandDrive);
+      this.setCurrentHandDrive(this.isRightWheel);
     },
-    disableDateIntoPickerFrom(date){
-      return date < new Date(new Date().setHours(0,0,0,0));
+    disableDateIntoPickerFrom(date) {
+      return date < new Date(new Date().setHours(0, 0, 0, 0));
     },
-    disableTimeIntoPickerFrom(date){
+    disableTimeIntoPickerFrom(date) {
       let hours = dayjs().hour();
       let minutes = dayjs().minute();
       return date < dayjs(dayjs().hour(hours, minutes, 0, 0));
     },
-     disableDateIntoPickerTo(date){
-       let currentDateFrom = ''
-      if (this.dateFrom){
+    disableDateIntoPickerTo(date) {
+      let currentDateFrom = "";
+      if (this.dateFrom) {
         currentDateFrom = dayjs(this.dateFrom).date();
       }
-      return date < dayjs(dayjs().date(currentDateFrom-1));
+      return date < dayjs(dayjs().date(currentDateFrom - 1));
     },
-    disableTimeIntoPickerTo(date){
-       let hour = dayjs(this.dateFrom).hour();
-       return date < dayjs(dayjs().hour(hour,0,0,0));
+    disableTimeIntoPickerTo(date) {
+      let hour = dayjs(this.dateFrom).hour();
+      return date < dayjs(dayjs().hour(hour, 0, 0, 0));
     },
+    defaultTimeToPickerTo(){
+      return dayjs().hour(dayjs(this.dateFrom).hour())
+    },
+    defaultTimeToPickerFrom(){
+      return dayjs(this.dateFrom).hour()
+    }
   },
   async mounted() {
     await this.getRate();
@@ -224,6 +223,9 @@ export default {
 }
 .order-additionally__section-radio {
   display: flex;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 .order-additionally__section-radio_column {
   flex-direction: column;

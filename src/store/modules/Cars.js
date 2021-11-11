@@ -10,9 +10,9 @@ export default {
     dateFrom: "",
     dateTo: "",
     currentColor: "",
-    currentFullTank: false,
-    currentChildSeat: false,
-    currentHandDrive: false,
+    isFullTank: false,
+    isNeedChildChair: false,
+    isRightWheel: false,
     rateId: "",
   },
   mutations: {
@@ -43,14 +43,14 @@ export default {
     setCurrentColor(state, currentColor) {
       state.currentColor = currentColor;
     },
-    setCurrentFullTank(state, currentFullTank) {
-      state.currentFullTank = currentFullTank;
+    setCurrentFullTank(state, isFullTank) {
+      state.isFullTank = isFullTank;
     },
-    setCurrentChildSeat(state, currentChildSeat) {
-      state.currentChildSeat = currentChildSeat;
+    setCurrentChildSeat(state, isNeedChildChair) {
+      state.isNeedChildChair = isNeedChildChair;
     },
-    setCurrentHandDrive(state, currentHandDrive) {
-      state.currentHandDrive = currentHandDrive;
+    setCurrentHandDrive(state, isRightWheel) {
+      state.isRightWheel = isRightWheel;
     },
     setRateId(state, rateId) {
       state.rateId = rateId;
@@ -118,6 +118,11 @@ export default {
       hoursForUser = hoursForUser - daysForUser * 24;
       return `${daysForUser} д и ${hoursForUser} ч`;
     },
+    dateForUserConfirmed(state) {
+      if (!state.dateFrom) return "";
+      const dateFromPrep = dayjs(state.dateFrom);
+      return dateFromPrep.format("DD.MM.YYYY HH:mm");
+    },
     getRateForUser(state) {
       let rateForUser = [];
       state.rate.forEach((itm) => {
@@ -147,9 +152,9 @@ export default {
     },
     getAddFuncValueForPrice(state) {
       const listOfAddFunc = [
-        state.currentFullTank,
-        state.currentChildSeat,
-        state.currentHandDrive,
+        state.isFullTank,
+        state.isNeedChildChair,
+        state.isRightWheel,
       ];
       const getTrueValuesFromList = listOfAddFunc.filter(Boolean);
       return +getTrueValuesFromList.length * 300;

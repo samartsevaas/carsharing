@@ -9,10 +9,12 @@
           </div>
           <nav class="order-panel">
             <base-navigation
-              v-if="this.$route.name !== 'confirmed'"
+              v-if="this.$route.path !== '/order/confirmed'"
             ></base-navigation>
             <div v-else>
-              <div class="confirmed-order__wrapper">Заказ номер RU58491823</div>
+              <div class="confirmed-order__wrapper">
+                Заказ номер {{ sendOrderData.id }}
+              </div>
               <div></div>
             </div>
           </nav>
@@ -37,7 +39,7 @@ import TheHeader from "@sections/TheHeader.vue";
 import BaseSidebar from "@sections/TheSidebar.vue";
 import BaseNavigation from "@elements/BaseNavigation.vue";
 import TheOrderSidebar from "@sections/TheOrderSidebar.vue";
-
+import { mapState } from "vuex";
 export default {
   name: "OrderViews",
   components: {
@@ -50,6 +52,18 @@ export default {
     link() {
       return "/order";
     },
+    ...mapState({
+      sendOrderData: (state) => state.order.sendOrderData,
+    }),
+  },
+  // methods:{
+  //   ...mapActions({
+  //     getOrderDataFromServer:'order/getOrderDataFromServer'
+  //   })
+  // },
+  async mounted() {
+    if (this.$route.path === "/order/confirmed")
+      await this.getOrderDataFromServer(this.sendOrderData.id);
   },
 };
 </script>

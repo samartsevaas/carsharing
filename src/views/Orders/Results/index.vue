@@ -1,30 +1,93 @@
 <template>
   <div class="order-result">
     <div class="order-result-info">
-      <div v-if="this.$route.name !== 'confirmed'"></div>
-      <div class="confirmed-order" v-else>Ваш заказ подтверждён</div>
-      <div class="order-result-info_model">Hyndai, i30N</div>
-      <div class="order-result-info_num">К 761 НА 73</div>
-      <div class="order-result-info_oil">
+      <!-- <div v-if="this.$route.name !== 'confirmed'"></div> -->
+      <!-- <div class="confirmed-order" v-else>Ваш заказ подтверждён</div> -->
+      <div class="order-result-info_model">
+        {{ selectedModelfromUser.name }}
+      </div>
+      <div class="order-result-info_num">
+        {{ selectedModelfromUser.number }}
+      </div>
+      <div class="order-result-info_oil" v-if="isFullTank">
         <span>Топливо </span>
-        <span>100%</span>
+        <span>100 %</span>
+      </div>
+      <div class="order-result-info_oil" v-else>
+        <span>Топливо</span>
+        <span> {{ selectedModelfromUser.tank }} %</span>
       </div>
       <div class="order-result-info_date">
         <span>Доступна с </span>
-        <span>12.06.2019 12:00</span>
+        <span>{{ dateForUserConfirmed }}</span>
       </div>
     </div>
     <div class="order-result-info_car">
       <picture>
-        <source srcset="@/assets/images/car3.avif" type="image/avif" />
-        <img src="@/assets/images/car3.jpg" />
+        <img
+          :src="selectedModelfromUser.thumbnail.path"
+          class="order-result-info_car-img"
+        />
       </picture>
     </div>
   </div>
 </template>
 <script>
+import { mapGetters, mapState, mapActions } from "vuex";
 export default {
   name: "OrderResultViews",
+  methods: {
+    ...mapActions({
+      sendOrderData: "order/sendOrderData",
+    }),
+    createRequestParams() {
+      const {
+        isFullTank,
+        isNeedChildChair,
+        isRightWheel,
+        currentColor: color,
+      } = this.getOrderData;
+      const {
+        dateFrom,
+        dateTo,
+        pointId,
+        cityId,
+        selectedModelfromUser: carId,
+      } = this.dataForServer;
+      const { finalPrice: price } = this.getFinalPriceForUser;
+
+      return {
+        color,
+        isFullTank,
+        isNeedChildChair,
+        isRightWheel,
+        carId,
+        dateFrom,
+        dateTo,
+        price,
+        pointId,
+        cityId,
+        orderStatusId: this.orderStatusId,
+      };
+    },
+  },
+  computed: {
+    ...mapGetters({
+      selectedModelfromUser: "cars/selectedModelfromUser",
+      dateForUserConfirmed: "cars/dateForUserConfirmed",
+      orderStatusId: "order/confirmedOrderStatus",
+      getOrderData: "getOrderData",
+      getFinalPriceForUser: "getFinalPriceForUser",
+      dataForServer: "dataForServer",
+    }),
+    ...mapState({
+      isFullTank: (state) => state.cars.isFullTank,
+    }),
+  },
+  async created() {
+    const request = this.createRequestParams();
+    await this.sendOrderData(request);
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -72,6 +135,11 @@ export default {
 }
 .order-result-info_car {
   @media (max-width: 768px) {
+  }
+  & .order-result-info_car-img {
+    width: 300px;
+    height: 200px;
+    object-fit: contain;
   }
 }
 </style>

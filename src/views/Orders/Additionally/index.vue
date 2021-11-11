@@ -34,7 +34,7 @@
             :minute-step="30"
             :disabled-date="disableDateIntoPickerFrom"
             :disabled-time="disableTimeIntoPickerFrom"
-            :default-value="new Date(this.dateFrom).setHours()"
+            :default-value="defaultTimeToPickerFrom"
             @input="updateCurrentDateFrom"
           ></date-picker>
           <date-picker
@@ -46,8 +46,7 @@
             :minute-step="30"
             :disabled-date="disableDateIntoPickerTo"
             :disabled-time="disableTimeIntoPickerTo"
-            :default-value="
-              new Date().setHours(new Date(this.dateFrom).getHours())
+            :default-value="defaultTimeToPickerTo
             "
             @input="updateCurrentDateTo"
           ></date-picker>
@@ -139,12 +138,6 @@ export default {
     ...mapState({
       userChooseModel: (state) => state.cars.userChooseModel,
     }),
-    defaultTimeToPicker() {
-      if (!(dayjs().date() == dayjs(this.dateFrom).date())) {
-        return new Date(this.dateFrom).setHours();
-      }
-      return new Date().setHours(0, 0, 0, 0);
-    },
   },
   methods: {
     ...mapMutations({
@@ -199,6 +192,12 @@ export default {
       let hour = dayjs(this.dateFrom).hour();
       return date < dayjs(dayjs().hour(hour, 0, 0, 0));
     },
+    defaultTimeToPickerTo(){
+      return dayjs().hour(dayjs(this.dateFrom).hour())
+    },
+    defaultTimeToPickerFrom(){
+      return dayjs(this.dateFrom).hour()
+    }
   },
   async mounted() {
     await this.getRate();
@@ -224,6 +223,9 @@ export default {
 }
 .order-additionally__section-radio {
   display: flex;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 .order-additionally__section-radio_column {
   flex-direction: column;

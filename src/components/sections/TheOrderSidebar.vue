@@ -3,12 +3,12 @@
     <base-modal v-show="isModalVisible" @close="closeModal">
       <template v-slot:title> Подтвердить заказ </template>
       <template v-slot:confirm>
-        <base-button theme="main-green" @click="confirmedOrder()"
+        <base-button theme="main-green" @click="confirmedOrder"
           >Подтвердить</base-button
         >
       </template>
       <template v-slot:cancel>
-        <base-button theme="red" @click="closeModal()">Вернуться</base-button>
+        <base-button theme="red" @click="closeModal">Вернуться</base-button>
       </template>
     </base-modal>
     <div class="order-info__results-final-order">Ваш заказ:</div>
@@ -184,7 +184,7 @@ export default {
 .order-info {
   display: flex;
   height: 100%;
-  @media (max-width: 700px) {
+  @media (max-width: 840px) {
     display: block;
   }
 }

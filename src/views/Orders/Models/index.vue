@@ -104,6 +104,9 @@ export default {
 .order-models__navigation {
   display: flex;
   margin: 32px 0px 48px 0px;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 
 .order-models__wrapper {
